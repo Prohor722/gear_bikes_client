@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div class="navbar bg-secondary text-white py-4">
+    <div class="navbar bg-secondary text-accent py-4 drop-shadow-lg">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -43,14 +43,14 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to='/' class="btn btn-ghost normal-case text-xl">GearBikes</Link>
+        <Link to='/' class="btn btn-ghost font-extrabold text-2xl normal-case text-primary">GearBikes</Link>
       </div>
       <div class="navbar-center hidden lg:flex ml-auto">
         <ul class="menu menu-horizontal p-0">
           <li>
             <div class="avatar p-0 mr-4">
-              <div class="w-12 rounded-full ring ring-white ring-offset-base-100 ring-offset-1">
-                <img src="https://api.lorem.space/image/face?hash=3174" />
+              <div class="w-12 rounded-full ring ring-primary ">
+                <img src="https://api.lorem.space/image/face?hash=3174" alt="hamburger menu icon"/>
               </div>
             </div>
           </li>
