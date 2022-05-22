@@ -1,10 +1,18 @@
 import React from 'react';
+import Footer from '../components/Footer';
+import Banner from '../components/Home/Banner';
+import BusinessSummary from '../components/Home/BusinessSummary';
+import Parts from '../components/Home/Parts';
+import ReviewSection from '../components/Home/ReviewSection';
 
 const Home = () => {
     return (
-        <div>
-            <h2>Home it is</h2>
-            <button className='btn btn-primary '>Hohoho</button>
+        <div className='bg-secondary'>
+            <Banner/>
+            <Parts/>
+            <BusinessSummary/>
+            <ReviewSection/>
+            <Footer/>
         </div>
     );
 };
