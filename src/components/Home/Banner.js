@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center text-accent pt-20 pb-28">
+    <div className="flex flex-col lg:flex-row items-center justify-center text-neutral pt-20 pb-28">
         <h2 className="text-6xl font-bold px-20">
           What ever Part you want you can get..
         </h2>
