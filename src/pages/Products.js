@@ -1,47 +1,42 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import SingleProduct from "../components/Home/SingleProduct";
+import Loading from "../components/Loading";
 import Search from "../components/Search";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
-  // const { data:reviews} = useQuery('reviews', ()=>fetch('reviews.json').then(res=>res.json()));
+  const { data: products, isLoading } = useQuery(["allProducts", search], () =>
+    fetch(`http://localhost:5000/products?search=${search}`).then((res) =>
+      res.json()
+    )
+  );
 
-  useEffect(()=>{
-      fetch("products.json")
-        .then((res) => res.json())
-        .then((data) => {
-            console.log("inside fetch");
-            return setProducts(data);
-        });
-  },[search])
+  console.log(products);
 
-  if(search.length>0){
-      console.log(search);
-    const searchProducts = products.filter((product) => product.name.toLowerCase().includes(search));
-    setSearch("no search");
-
-    if(searchProducts) {
-        setProducts(searchProducts);
-        setSearch('');
-    }
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
     <div className="my-20">
       <h2 className="text-4xl mb-10 font-semibold text-secondary text-center">
-        All Customer Reviews
+        All Products
       </h2>
 
-      <Search setSearch={setSearch} />
+      <div className="mx-4">
+        <Search setSearch={setSearch} />
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mx-2 lg:mx-20">
-        {products? products.map((p) => (
-          <SingleProduct key={p?._id} product={p} />
-        )):
-        <p className="text-center text-secondary text-4xl my-20">No product to show</p>
-        }
+        {products.length &&
+          products.map((p) => <SingleProduct key={p?._id} product={p} />)}
       </div>
+      {products.length || (
+        <p className="text-center text-secondary text-4xl px-10 lg:px-0 my-20">
+          No product to show
+        </p>
+      )}
     </div>
   );
 };

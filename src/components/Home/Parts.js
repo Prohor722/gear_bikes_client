@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading';
 import SingleProduct from './SingleProduct';
 
 const Parts = () => {
-    const [products , setProducts] = useState([]);
-    // const { data:reviews} = useQuery('reviews', ()=>fetch('reviews.json').then(res=>res.json()));
-    fetch('products.json')
-    .then(res=>res.json())
-    .then(data=>setProducts(data))
+    const { data:products, isLoading } = useQuery('products', ()=>fetch('http://localhost:5000/latestProducts').then(res=>res.json()));
+
+    if(isLoading){
+        return <Loading/>
+    }
+    // const [products , setProducts] = useState([]);
+    // fetch('http://localhost:5000/latestProducts')
+    // .then(res=>res.json())
+    // .then(data=>setProducts(data))
     return (
         <div className='py-0 lg:py-20 bg-base-100'>
             <h2 className='text-4xl font-bold text-center mb-6'>Parts</h2>

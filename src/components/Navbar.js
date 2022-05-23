@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../assets/logo/30306144.svg'
 
 const Navbar = () => {
   return (
@@ -23,6 +22,15 @@ const Navbar = () => {
               />
             </svg>
           </label>
+
+          {/* <div class="drawer-content flex">
+            <label class="avatar" for="my-drawer-2">
+              <div class="w-12 rounded-full ring ring-primary ring-offset-2">
+                <img src="https://api.lorem.space/image/face?hash=3174" alt="avatar" />
+              </div>
+            </label>
+          </div> */}
+
           <ul
             tabindex="0"
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
@@ -47,16 +55,34 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to='/' class="btn btn-ghost font-extrabold text-2xl normal-case text-primary">
+        <Link
+          to="/"
+          class="btn btn-ghost font-extrabold text-2xl normal-case text-primary"
+        >
           GearBikes
         </Link>
       </div>
+
+      <div class="navbar-end mt-2 mr-2 lg:hidden">
+        <label class="avatar" for="dashboard-sidebar">
+          <div class="w-12 rounded-full ring ring-primary">
+            <img
+              src="https://api.lorem.space/image/face?hash=3174"
+              alt="avatar"
+            />
+          </div>
+        </label>
+      </div>
+
       <div class="navbar-center hidden lg:flex ml-auto">
         <ul class="menu menu-horizontal p-0 text-white">
           <li>
             <div class="avatar p-0 mr-4">
               <div class="w-12 rounded-full ring ring-primary ">
-                <img src="https://api.lorem.space/image/face?hash=3174" alt="hamburger menu icon"/>
+                <img
+                  src="https://api.lorem.space/image/face?hash=3174"
+                  alt="hamburger menu icon"
+                />
               </div>
             </div>
           </li>
@@ -64,7 +90,7 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-              <NavLink to="/products">Products</NavLink>
+            <NavLink to="/products">Products</NavLink>
           </li>
           <li>
             <NavLink to="/reviews">Reviews</NavLink>
