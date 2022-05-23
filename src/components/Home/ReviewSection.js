@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import Review from './Review';
 
 const ReviewSection = () => {
-    const reviews = [
-        {_id: 1, name:'john abrahim', review: 'amar ja mon a hoy hoy tate tor ki?' ,img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sNAcs6sJqZkqQ4X42oDMe_FBN5-gY0giS8Ov_8_un3cC_6obPLePKy_mGXL5nHN92Vw&usqp=CAU', rate: 5},
-        {_id: 2, name:'john abrahim', review: 'amar ja mon a hoy hoy tate tor ki?' ,img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sNAcs6sJqZkqQ4X42oDMe_FBN5-gY0giS8Ov_8_un3cC_6obPLePKy_mGXL5nHN92Vw&usqp=CAU', rate: 5},
-        {_id: 3, name:'john abrahim', review: 'amar ja mon a hoy hoy tate tor ki?' ,img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sNAcs6sJqZkqQ4X42oDMe_FBN5-gY0giS8Ov_8_un3cC_6obPLePKy_mGXL5nHN92Vw&usqp=CAU', rate: 5},
-        {_id: 4, name:'john abrahim', review: 'amar ja mon a hoy hoy tate tor ki?' ,img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sNAcs6sJqZkqQ4X42oDMe_FBN5-gY0giS8Ov_8_un3cC_6obPLePKy_mGXL5nHN92Vw&usqp=CAU', rate: 5},
-        {_id: 5, name:'john abrahim', review: 'amar ja mon a hoy hoy tate tor ki?' ,img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sNAcs6sJqZkqQ4X42oDMe_FBN5-gY0giS8Ov_8_un3cC_6obPLePKy_mGXL5nHN92Vw&usqp=CAU', rate: 5},
-        {_id: 6, name:'john abrahim', review: 'amar ja mon a hoy hoy tate tor ki sg hghchgh hgcghchg gjvgcgj jhvjvj jgvjgcj jhvjvgjvjhv jhvjhvjhvj jhbjhvj jhvjvj?' ,img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6sNAcs6sJqZkqQ4X42oDMe_FBN5-gY0giS8Ov_8_un3cC_6obPLePKy_mGXL5nHN92Vw&usqp=CAU', rate: 5},
-    ]
+    const [reviews , setReviews] = useState([]);
+    // const { data:reviews} = useQuery('reviews', ()=>fetch('reviews.json').then(res=>res.json()));
+    fetch('reviews.json')
+    .then(res=>res.json())
+    .then(data=>setReviews(data))
     return (
         <div className='py-20 bg-base-100'>
             <h2 className='text-center text-4xl mb-10 font-semibold'>Customer Reviews</h2>

@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SingleProduct from './SingleProduct';
 
-const products = [
-    { _id:1, name: 'engine', desc:'a engine ldwhb djbd sbcjshjs sndjsbjdbsjd  djsbdjsbdj ddjsbjesjfs sjfhsbfbf sjbfjsjf', price: 500, minQuantity: 150, available: 12000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7CAE65XFjF6_Cyk6Wtw_zea4VJcsSpqzoSGzuwecTNXmxAEct1Ccc2J1Px7r4ehk9jM&usqp=CAU'},
-    { _id:2, name: 'engine', desc:'a engine ldwhb djbd sbcjshjs sndjsbjdbsjd  djsbdjsbdj ddjsbjesjfs sjfhsbfbf sjbfjsjf', price: 500, minQuantity: 150, available: 12000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7CAE65XFjF6_Cyk6Wtw_zea4VJcsSpqzoSGzuwecTNXmxAEct1Ccc2J1Px7r4ehk9jM&usqp=CAU'},
-    { _id:3, name: 'engine', desc:'a engine ldwhb djbd sbcjshjs sndjsbjdbsjd  djsbdjsbdj ddjsbjesjfs sjfhsbfbf sjbfjsjf', price: 500, minQuantity: 150, available: 12000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7CAE65XFjF6_Cyk6Wtw_zea4VJcsSpqzoSGzuwecTNXmxAEct1Ccc2J1Px7r4ehk9jM&usqp=CAU'},
-    { _id:4, name: 'engine', desc:'a engine ldwhb djbd sbcjshjs sndjsbjdbsjd  djsbdjsbdj ddjsbjesjfs sjfhsbfbf sjbfjsjf', price: 500, minQuantity: 150, available: 12000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7CAE65XFjF6_Cyk6Wtw_zea4VJcsSpqzoSGzuwecTNXmxAEct1Ccc2J1Px7r4ehk9jM&usqp=CAU'},
-    { _id:4, name: 'engine', desc:'a engine ldwhb djbd sbcjshjs sndjsbjdbsjd  djsbdjsbdj ddjsbjesjfs sjfhsbfbf sjbfjsjf', price: 500, minQuantity: 150, available: 12000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7CAE65XFjF6_Cyk6Wtw_zea4VJcsSpqzoSGzuwecTNXmxAEct1Ccc2J1Px7r4ehk9jM&usqp=CAU'},
-    { _id:4, name: 'engine', desc:'a engine ldwhb djbd sbcjshjs sndjsbjdbsjd  djsbdjsbdj ddjsbjesjfs sjfhsbfbf sjbfjsjf', price: 500, minQuantity: 150, available: 12000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7CAE65XFjF6_Cyk6Wtw_zea4VJcsSpqzoSGzuwecTNXmxAEct1Ccc2J1Px7r4ehk9jM&usqp=CAU'},
-]
-
 const Parts = () => {
+    const [products , setProducts] = useState([]);
+    // const { data:reviews} = useQuery('reviews', ()=>fetch('reviews.json').then(res=>res.json()));
+    fetch('products.json')
+    .then(res=>res.json())
+    .then(data=>setProducts(data))
     return (
         <div className='py-0 lg:py-20 bg-base-100'>
             <h2 className='text-4xl font-bold text-center mb-6'>Parts</h2>
