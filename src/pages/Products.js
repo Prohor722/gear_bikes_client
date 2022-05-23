@@ -10,12 +10,16 @@ const Products = () => {
   useEffect(()=>{
       fetch("products.json")
         .then((res) => res.json())
-        .then((data) => setProducts(data));
+        .then((data) => {
+            console.log("inside fetch");
+            return setProducts(data);
+        });
   },[search])
 
   if(search.length>0){
+      console.log(search);
     const searchProducts = products.filter((product) => product.name.toLowerCase().includes(search));
-    console.log("Search items",searchProducts)
+    setSearch("no search");
 
     if(searchProducts) {
         setProducts(searchProducts);
