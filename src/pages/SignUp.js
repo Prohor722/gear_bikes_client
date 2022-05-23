@@ -53,6 +53,16 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
+
+    fetch(`http://localhost:5000/user`,{
+      method:'PUT',
+      headers:{
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({email:data.email, name:data.name})
+    })
+    .then(res=>res.json())
+    .then(data=>console.log(data))
   };
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-yellow-100 to-base-100">
