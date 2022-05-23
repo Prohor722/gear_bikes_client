@@ -6,21 +6,21 @@ module.exports = {
         mytheme: {
           primary: "#F7D716",
 
-          secondary: "#293462",
+          secondary: "#F24C4C",
 
-          accent: "#777777",
+          accent: "#15133C",
 
           neutral: "#F24C4C",
 
           "base-100": "#FFFFFF",
 
-          info: "#15133C",
+          info: "#323232",
 
-          success: "#36D399",
+          success: "#EFEFEF",
 
           warning: "#FBBD23",
 
-          error: "#F87272",
+          error: "#F24C4C",
         },
       },
     ],

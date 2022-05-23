@@ -13,15 +13,15 @@ const products = [
 
 const Parts = () => {
     return (
-        <div className='bg-white py-0 lg:py-20'>
-            <h2 className='text-4xl font-bold text-center'>Parts</h2>
+        <div className='py-0 lg:py-20 bg-base-100'>
+            <h2 className='text-4xl font-bold text-center mb-6'>Parts</h2>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mx-6 lg:mx-20'>
             {
                 products.map(p=><SingleProduct key={p._id} product={p}/>)
             }
             </div>
             <div className=''>
-            <Link to='/reviews' className='block w-20 ml-auto pb-10 lg:pb-0 lg:mr-20 mt-10 text-lg font-bold'>See All</Link>
+            <Link to='/products' className='block w-20 ml-auto pb-10 lg:pb-0 lg:mr-20 mt-10 text-lg font-bold text-secondary'>See All</Link>
             </div>
         </div>
     );

@@ -12,7 +12,7 @@ const SingleProduct = ({ product }) => {
         <h5>Available Quantity: {product.available}</h5>
         <h5>Price per Unit: {product.price}</h5>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Buy Now</button>
+          <button class="btn btn-primary hover:btn-info hover:text-white">Buy Now</button>
         </div>
       </div>
     </div>

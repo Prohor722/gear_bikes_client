@@ -1,15 +1,16 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import logo from '../assets/logo/30306144.svg'
 
 const Navbar = () => {
   return (
-    <div class="navbar bg-info text-accent py-4 drop-shadow-lg">
+    <div class="navbar bg-accent text-accent py-4 drop-shadow-lg">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-5 w-5 text-primary"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -30,6 +31,9 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
+              <NavLink to="/products">Products</NavLink>
+            </li>
+            <li>
               <NavLink to="/reviews">Reviews</NavLink>
             </li>
             <li>
@@ -43,7 +47,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to='/' class="btn btn-ghost font-extrabold text-2xl normal-case text-primary">GearBikes</Link>
+        <Link to='/' class="btn btn-ghost font-extrabold text-2xl normal-case text-primary">
+          GearBikes
+        </Link>
       </div>
       <div class="navbar-center hidden lg:flex ml-auto">
         <ul class="menu menu-horizontal p-0 text-white">
@@ -56,6 +62,9 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+              <NavLink to="/products">Products</NavLink>
           </li>
           <li>
             <NavLink to="/reviews">Reviews</NavLink>
