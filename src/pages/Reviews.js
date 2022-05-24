@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Review from '../components/Home/Review';
+import Loading from '../components/Loading';
 
 const Reviews = () => {
     const [reviews , setReviews] = useState([]);
@@ -7,6 +8,9 @@ const Reviews = () => {
     fetch('reviews.json')
     .then(res=>res.json())
     .then(data=>setReviews(data))
+    if(!reviews){
+        return <Loading/>
+    }
     return (
         <div className='my-20'>
             <h2 className='text-4xl mb-10 font-semibold text-secondary text-center'>All Customer Reviews</h2>

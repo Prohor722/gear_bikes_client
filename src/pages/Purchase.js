@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../components/Loading";
@@ -31,7 +30,7 @@ const Purchase = () => {
 
   const addOrder = (e) => {
     setErr("");
-    console.log("inside")
+    // console.log("inside")
     e.preventDefault();
     const address = e.target.address.value;
     const phone = e.target.phone.value;
@@ -81,6 +80,9 @@ const Purchase = () => {
     .then(data=>{
       if(data.insertedId){
         toast.success("Your Order Added");
+      }
+      else{
+        toast.error("Something went wrong please try again!");
       }
     })
   };

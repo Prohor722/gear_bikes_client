@@ -5,14 +5,14 @@ const Dashboard = () => {
   return (
     <div class="drawer drawer-mobile bg-gradient-to-r from-yellow-200 to-base-100">
       <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col items-center justify-center">
+      <div class="drawer-content flex flex-col items-center">
         {/* Page content here */}
-        <h2 className="text-secondary text-3xl">Welcome to your Dashboard</h2>
+        <h2 className="text-secondary text-3xl mt-10 mb-4">Welcome to your Dashboard</h2>
         <Outlet/>
       </div>
       <div class="drawer-side">
         <label for="dashboard-sidebar" class="drawer-overlay"></label>
-        <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+        <ul class="menu p-4 overflow-y-auto w-40 bg-base-100 text-base-content">
           <li>
             <Link to='/dashboard/myOrders'>My Orders</Link>
           </li>
