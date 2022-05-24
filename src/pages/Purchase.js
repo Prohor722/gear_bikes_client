@@ -35,6 +35,7 @@ const Purchase = () => {
     const address = e.target.address.value;
     const phone = e.target.phone.value;
     const quantity = e.target.quantity.value;
+    const status = "unpaid";
     // console.log("address: ",address, " phone:",phone," quantity:", quantity);
 
     if(quantity> product.available){
@@ -66,7 +67,8 @@ const Purchase = () => {
       address : address,
       phone: phone,
       quantity: quantity,
-      price: product.price
+      price: product.price,
+      status,
     }
 
     fetch('http://localhost:5000/addOrder',{

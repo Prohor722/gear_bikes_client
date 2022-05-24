@@ -5,7 +5,7 @@ import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
 
 const AddReview = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [rate, setRate]=useState(0);
 
   if (loading) {

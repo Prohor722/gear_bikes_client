@@ -15,16 +15,13 @@ const MyProfile = () => {
 
   const imageStorageKey = "babbbc32e0d550e6d017e38db2462b2b";
 
-  if (!userData || loading) {
-    return <Loading />;
-  }
-
   const onSubmit = async (data) => {
     
-    if(!data.name && !data.image[0] && !data.address && !data.phone){
+    if(!data.name && !data?.image[0] && !data.address && !data.phone){
       return;
     }
     let {name, address,phone } = data;
+    let img;
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -37,7 +34,8 @@ const MyProfile = () => {
     .then(res=>res.json())
     .then(result=>{
       if(result.success){
-        const img = result.data.url;
+        img = result.data.url;
+        console.log("direct url:",result.data.url);
         const email = userData.email;
         const id = userData._id;
         
@@ -53,6 +51,7 @@ const MyProfile = () => {
           address,
           email
         }
+        console.log(updateUser)
         //send to database
         fetch('http://localhost:5000/updateUser', {
           method: "PUT",
@@ -73,7 +72,13 @@ const MyProfile = () => {
           });
       }
     })
+    console.log("sob kisor bahire", img);
   };
+
+  if (loading || !userData) {
+    return <Loading/>;
+  }
+
   return (
     <div>
       <h2 className="text-xl font-bold text-secondary text-center">
