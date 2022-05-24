@@ -1,36 +1,48 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
 
 const AddReview = () => {
   const [user, loading, error] = useAuthState(auth);
+  const [rate, setRate]=useState(0);
 
   if (loading) {
     return <Loading />;
   }
-
   const postReview = (e) => {
     e.preventDefault();
     const post = e.target.review.value;
     const email = user.email;
+    const name = user.displayName;
 
-    // if (user.email && post) {
-    //   const review = {
-    //     email,
-    //     post,
-    //   };
-    //   fetch("", {
-    //     method: "POST",
-    //     headers: {
-    //       "content-type": "application/json",
-    //       authorization: localStorage.getItem("accessToken"),
-    //     },
-    //     body: JSON.stringify(),
-    //   });
-    // }
+    if (user.email && post) {
+      const review = {
+        name,
+        email,
+        post,
+        rate
+      };
+      fetch("http://localhost:5000/addReview", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("accessToken"),
+        },
+        body: JSON.stringify(review),
+      })
+      .then(res=>res.json())
+      .then(data=>{
+          if(data.insertedId){
+              toast.success("Thank you for your feedback.")
+            }
+            else{
+              toast.error("Something went wrong please try again.")
+          }
+      })
+      ;
+    }
   };
   return (
     <div>
@@ -57,9 +69,38 @@ const AddReview = () => {
                 />
               </div>
               <div class="form-control mt-4 flex flex-row">
-                <p>Rate:</p>
-                <FontAwesomeIcon className="text-info text-xl" icon={faStar} value="1"
-                name="star1" onClick="text-primary" />
+                <div class="rating" name="rate">
+                  <input
+                  onClick={()=>setRate(1)}
+                  type="radio"
+                  name="rating-2"
+                  class="mask mask-star-2 bg-orange-400 clicked"
+                  />
+                  <input
+                  onClick={()=>setRate(2)}
+                  type="radio"
+                  name="rating-2"
+                  class="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                  onClick={()=>setRate(3)}
+                  type="radio"
+                  name="rating-2"
+                  class="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                  onClick={()=>setRate(4)}
+                  type="radio"
+                  name="rating-2"
+                  class="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                  onClick={()=>setRate(5)}
+                    type="radio"
+                    name="rating-2"
+                    class="mask mask-star-2 bg-orange-400"
+                  />
+                </div>
               </div>
 
               <div class="form-control mt-6">
