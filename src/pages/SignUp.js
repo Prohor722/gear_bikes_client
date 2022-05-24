@@ -8,6 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import useToken from "../hooks/useToken";
 
 const SignUp = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
@@ -18,7 +19,7 @@ const SignUp = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  //   const [token] = useToken(user || googleUser);
+  const [token] = useToken(user || googleUser);
 
   const {
     register,
@@ -31,7 +32,7 @@ const SignUp = () => {
   let errorMessage;
 
   useEffect(() => {
-    if (user) {
+    if (user || googleUser) {
       navigate(from, { replace: true });
     }
   }, [user, googleUser, from, navigate]);
@@ -46,10 +47,10 @@ const SignUp = () => {
     return <Loading />;
   }
 
-  //   if (token) {
-  //     // console.log("success");
-  //     navigate("/appointment");
-  //   }
+    if (token) {
+      // console.log("success");
+      navigate("/");
+    }
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });

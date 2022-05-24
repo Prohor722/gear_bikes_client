@@ -1,7 +1,25 @@
+import { signOut } from "firebase/auth";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import auth from "../firebase.init";
+import Loading from "./Loading";
 
 const Navbar = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    navigate("/login");
+  }
+
+  const logout = () => {
+    localStorage.removeItem('accessToken');
+    signOut(auth);
+  };
   return (
     <div class="navbar bg-accent text-accent py-4 drop-shadow-lg">
       <div class="navbar-start">
@@ -33,7 +51,7 @@ const Navbar = () => {
 
           <ul
             tabindex="0"
-            class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            class="menu menu-compact z-10 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <NavLink to="/">Home</NavLink>
@@ -52,6 +70,13 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
+            <li>
+              {user ? (
+                <a onClick={logout}>Sign out</a>
+              ) : (
+                <NavLink to="/login">Login</NavLink>
+              )}
             </li>
           </ul>
         </div>
@@ -105,30 +130,13 @@ const Navbar = () => {
             <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
           <li>
-            <NavLink to="/login">Login</NavLink>
+            {user ? (
+              <a onClick={logout}>Sign out</a>
+            ) : (
+              <NavLink to="/login">Login</NavLink>
+            )}
           </li>
-          {/* <li tabindex="0">
-            <NavLink to='/dashboard'>
-              Dashboard
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-              </svg>
-            </NavLink>
-            <ul class="p-2 bg-base-100">
-              <li>
-                <NavLink to='/myProfile'>Profile</NavLink>
-              </li>
-              <li>
-                <NavLink to='/myOrders'>My Orders</NavLink>
-              </li>
-            </ul>
-          </li> */}
+          
         </ul>
       </div>
     </div>

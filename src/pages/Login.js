@@ -4,28 +4,30 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import auth from '../firebase.init';
+import useToken from '../hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-  let errorMessage;
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-//   const [token] = useToken(user || googleUser);
 
-//   useEffect(() => {
-//     if (token) {
-//       navigate(from, { replace: true });
-//     }
-//   }, [token, from, navigate]);
+    const {
+      register,
+      formState: { errors },
+      handleSubmit,
+    } = useForm();
+    let errorMessage;
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const [token] = useToken(user || googleUser);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
 
   if (error || googleError) {
     errorMessage = (
