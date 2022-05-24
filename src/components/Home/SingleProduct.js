@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingleProduct = ({ product }) => {
   return (
@@ -10,9 +11,10 @@ const SingleProduct = ({ product }) => {
         <h2 class="card-title">Product: {product.name}</h2>
         <p>{product.desc}</p>
         <h5>Available Quantity: {product.available}</h5>
+        <h5>Minimum Order: {product.minQuantity}</h5>
         <h5>Price per Unit: {product.price}</h5>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary hover:btn-info hover:text-white">Buy Now</button>
+          <Link to={`/purchase/${product._id}`} class="btn btn-primary hover:btn-info hover:text-white">Buy Now</Link>
         </div>
       </div>
     </div>

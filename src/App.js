@@ -11,6 +11,7 @@ import About from './pages/About'
 import Navbar from './components/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
+import Purchase from './pages/Purchase';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<SignUp/>} />
+          <Route path='/purchase/:id' element={<Purchase/>} />
         </Routes>
 
         <Footer/>
