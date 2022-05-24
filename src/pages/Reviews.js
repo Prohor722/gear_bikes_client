@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import Review from '../components/Home/Review';
 import Loading from '../components/Loading';
 
 const Reviews = () => {
-    const [reviews , setReviews] = useState([]);
-    // const { data:reviews} = useQuery('reviews', ()=>fetch('reviews.json').then(res=>res.json()));
-    fetch('reviews.json')
-    .then(res=>res.json())
-    .then(data=>setReviews(data))
-    if(!reviews){
+    // const [reviews , setReviews] = useState([]);
+    const { data:reviews, isLoading} = useQuery('reviews', ()=>fetch('http://localhost:5000/reviews').then(res=>res.json()));
+    // fetch('http://localhost:5000/reviews')
+    // .then(res=>res.json())
+    // .then(data=>setReviews(data))
+    if(isLoading){
         return <Loading/>
     }
     return (
