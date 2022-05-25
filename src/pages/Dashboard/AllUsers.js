@@ -5,7 +5,13 @@ import Loading from '../../components/Loading';
 
 const AllUsers = () => {
     const { data: users, isLoading, refetch } = useQuery("users", () =>
-    fetch(`http://localhost:5000/users`).then((res) => res.json())
+    fetch(`http://localhost:5000/users`,{
+        
+        method: "GET",
+        headers:{
+            authorization: localStorage.getItem('accessToken')
+        }
+    }).then((res) => res.json())
   );
 
   const makeAdmin = (id) =>{

@@ -3,10 +3,12 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import auth from "../firebase.init";
+import useUser from "../hooks/useUser";
 import Loading from "./Loading";
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
+  const [userData] = useUser();
   const navigate = useNavigate();
 
   if (loading) {
@@ -88,29 +90,31 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div class="navbar-end mt-2 mr-2 lg:hidden">
-        <label class="avatar" for="dashboard-sidebar">
-          <div class="w-12 rounded-full ring ring-primary">
-            <img
-              src="https://api.lorem.space/image/face?hash=3174"
-              alt="avatar"
-            />
-          </div>
-        </label>
-      </div>
+      {userData?.img &&
+        <div class="navbar-end mt-2 mr-2 lg:hidden">
+          <label class="avatar" for="dashboard-sidebar">
+            <div class="w-12 rounded-full ring ring-primary">
+              <img
+                src={userData?.img}
+                alt="avatar"
+              />
+            </div>
+          </label>
+        </div>
+      }
 
       <div class="navbar-center hidden lg:flex ml-auto">
         <ul class="menu menu-horizontal p-0 text-white">
-          <li>
+          {userData?.img && <li>
             <div class="avatar p-0 mr-4">
               <div class="w-12 rounded-full ring ring-primary ">
                 <img
-                  src="https://api.lorem.space/image/face?hash=3174"
+                  src={userData?.img}
                   alt="hamburger menu icon"
                 />
               </div>
             </div>
-          </li>
+          </li>}
           <li>
             <NavLink to="/">Home</NavLink>
           </li>

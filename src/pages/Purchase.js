@@ -16,7 +16,12 @@ const Purchase = () => {
   const [quant, setQuant] = useState(0);
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`http://localhost:5000/product/${id}`,{
+      method: "GET",
+      headers:{
+          authorization: localStorage.getItem('accessToken')
+      }
+    })
     .then((res) => res.json())
     .then(data=>{
       setProduct(data);
@@ -93,7 +98,7 @@ const Purchase = () => {
     <div class="hero min-h-screen bg-gradient-to-r from-yellow-100 to-base-100">
       <div class="hero-content flex-col lg:flex-row">
         <div className="bg-white shadow-lg">
-          <img src={product.img} alt="product" class="lg:max-w-sm" />
+          <img src={product.img} alt="product" class="lg:max-w-lg" />
           <div className="mt-4 p-4 text-center">
             <h1 className="text-xl font-semibold">
               Product Name :{" "}

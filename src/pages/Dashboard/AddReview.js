@@ -6,7 +6,7 @@ import auth from "../../firebase.init";
 
 const AddReview = () => {
   const [user, loading] = useAuthState(auth);
-  const [rate, setRate]=useState(0);
+  const [rate, setRate]=useState(5);
 
   if (loading) {
     return <Loading />;
@@ -96,6 +96,7 @@ const AddReview = () => {
                   />
                   <input
                   onClick={()=>setRate(5)}
+                  clicked
                     type="radio"
                     name="rating-2"
                     class="mask mask-star-2 bg-orange-400"

@@ -187,8 +187,8 @@ const MyProfile = () => {
 
               <input
                 type="submit"
-                className="btn btn-success w-full max-w-xs"
-                value="Login"
+                className="btn btn-primary w-full max-w-xs"
+                value="Update"
               />
             </form>
           </div>

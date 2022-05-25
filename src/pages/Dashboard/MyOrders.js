@@ -9,7 +9,12 @@ const MyOrders = () => {
 //   console.log(user?.email);
 
   const { data: orders, isLoading } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/orders/${user.email}`).then((res) =>
+    fetch(`http://localhost:5000/orders/${user.email}`,{
+        method: "GET",
+        headers:{
+            authorization: localStorage.getItem('accessToken')
+        }
+    }).then((res) =>
       res.json()
     )
   );
@@ -25,6 +30,7 @@ const MyOrders = () => {
   }
   return (
     <div>
+        <h3 className="text-lg text-center text-secondary font-semibold mb-2">My Orders</h3>
       <div class="overflow-x-auto">
         <table class="table table-compact w-full">
           <thead>
@@ -61,7 +67,10 @@ const MyOrders = () => {
                 <th>
                   {
                   (o?.status==='unpaid')? 
-                  <button className="btn btn-success">pay</button>
+                  <div>
+                      <button className="btn btn-success">pay</button>
+                      <button className="btn btn-secondary ml-2">cancel</button>
+                  </div>
                    : 
                    <p className="text-success">{o?.status}</p>}
                 </th>

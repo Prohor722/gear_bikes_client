@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../../components/Loading";
 
 const ManageOrders = () => {
-  const { data: orders, isLoading } = useQuery("allOrders", () =>
-    fetch(`http://localhost:5000/orders`).then((res) => res.json())
+  const [status, setStatus] = useState('all');
+  const { data: orders, isLoading, refactor } = useQuery(["allOrders", status], () =>
+    fetch(`http://localhost:5000/orders/sortBy/${status}`, {
+      method: "GET",
+      headers: {
+        authorization: localStorage.getItem("accessToken"),
+      },
+    }).then((res) => res.json())
   );
+
+  const sort =e=>{
+      e.preventDefault();
+      const status= e.target.sort.value;
+      console.log(status);
+      setStatus(status);
+      console.log(status);
+      refactor();
+  }
+
 
   if (isLoading || !orders) {
     return <Loading />;
@@ -15,6 +31,15 @@ const ManageOrders = () => {
       <h2 className="text-xl font-semibold text-secondary mb-2 text-center">
         Manage Orders
       </h2>
+      <form className="flex flex-row-reverse mb-2" onSubmit={sort}>
+        <select name="sort" class="select select-bordered select-xs max-w-xs">
+          <option value="all">All</option>
+          <option value="paid">Pending</option>
+          <option value="unpaid">Unpaid</option>
+          <option value="shipped">Shipped</option>
+        </select>
+        <button className="btn btn-xs btn-primary ml-2" type="submit">sort</button>
+      </form>
       <div>
         <div class="overflow-x-auto">
           <table class="table table-compact w-full">
@@ -51,11 +76,12 @@ const ManageOrders = () => {
                     <th>{o?.quantity}</th>
                     <th>{o?.price}</th>
                     <th>
-                      {o?.status === "unpaid" ? (
-                        <button className="btn btn-success">pay</button>
-                      ) : (
-                        <p className="text-success">{o?.status}</p>
-                      )}
+                      {(o?.status === "unpaid") && <p className="text-secondary">unpaid</p>}
+                      {(o?.status === "paid") && <div>
+                      <p className="text-accent">pending</p>
+                      <button className="btn btn-xs btn-neutral text-white">ship</button>
+                        </div>}
+                      {(o?.status === "shipped") && <p className="text-success">shipped</p>}
                     </th>
                   </tr>
                 ))}
