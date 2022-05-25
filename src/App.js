@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -20,6 +19,10 @@ import AddProduct from "./pages/Dashboard/AddProduct";
 import AllUsers from "./pages/Dashboard/AllUsers";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RequireOnlyUser from './middleware/RequireOnlyUser'
+import RequireAdmin from './middleware/RequireAdmin'
+import RequireAuth from './middleware/RequireAuth'
+import Loading from "./components/Loading";
 
 function App() {
   return (
@@ -35,19 +38,56 @@ function App() {
 
 
         <Route path="dashboard" element={<Dashboard />}>
-          <Route index element={<MyOrders />} />
-          <Route path="myOrders" element={<MyOrders />} />
-          <Route path="myProfile" element={<MyProfile />} />
-          <Route path="addReview" element={<AddReview />} />
-          <Route path="manageOrders" element={<ManageOrders />} />
-          <Route path="addProduct" element={<AddProduct />} />
-          <Route path="users" element={<AllUsers/>} />
+          <Route index element={
+            <RequireAuth>
+              <MyProfile />
+            </RequireAuth>
+          } />
+          
+          <Route path="myOrders" element={
+          <RequireOnlyUser>
+            <MyOrders />
+          </RequireOnlyUser>} />
+          
+          <Route path="myProfile" element={
+          <RequireAuth>
+            <MyProfile />
+          </RequireAuth>} />
+          
+          <Route path="addReview" element={
+            <RequireOnlyUser>
+              <AddReview />
+            </RequireOnlyUser>
+          } />
+
+          <Route path="manageOrders" element={
+            <RequireAdmin>
+              <ManageOrders />
+            </RequireAdmin>
+          } />
+
+          <Route path="addProduct" element={
+            <RequireAdmin>
+              <AddProduct />
+            </RequireAdmin>
+
+          } />
+
+          <Route path="users" element={
+          <RequireAdmin>
+            <AllUsers/>
+          </RequireAdmin>} />
         </Route>
 
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/purchase/:id" element={<Purchase />} />
+        <Route path="/purchase/:id" element={
+          <RequireOnlyUser>
+            <Purchase />
+          </RequireOnlyUser>
+        } />
+        <Route path="*" element={<Loading />} />
       </Routes>
 
       <Footer />

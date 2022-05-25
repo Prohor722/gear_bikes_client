@@ -84,7 +84,7 @@ const Navbar = () => {
         </div>
         <Link
           to="/"
-          class="btn btn-ghost font-extrabold text-2xl normal-case text-primary"
+          class="btn btn-ghost font-extrabold text-2xl normal-case text-primary ml-6 lg:ml-0"
         >
           GearBikes
         </Link>

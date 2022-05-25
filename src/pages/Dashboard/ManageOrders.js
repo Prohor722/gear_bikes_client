@@ -42,7 +42,7 @@ const ManageOrders = () => {
       </form>
       <div>
         <div class="overflow-x-auto">
-          <table class="table table-compact w-full">
+          <table class="table table-compact w-full z-10">
             <thead>
               <tr>
                 <th>No.</th>
