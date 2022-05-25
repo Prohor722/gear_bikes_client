@@ -8,11 +8,8 @@ import auth from "../firebase.init";
 const Purchase = () => {
   const { id } = useParams();
   const [err, setErr ]= useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading ] = useAuthState(auth);
   const [product, setProduct] = useState({});
-  // const { data: product, isLoading } = useQuery("product", () =>
-  // fetch(`http://localhost:5000/product/${id}`).then((res) => res.json())
-  // );
   const [quant, setQuant] = useState(0);
 
   useEffect(()=>{
@@ -44,7 +41,7 @@ const Purchase = () => {
     // console.log("address: ",address, " phone:",phone," quantity:", quantity);
 
     if(quantity> product.available){
-      setErr('Please add quantity that much we currently.');
+      setErr('Please add quantity that much we have currently.');
       return;
     }
     if(quantity< product.minQuantity){
@@ -79,7 +76,8 @@ const Purchase = () => {
     fetch('http://localhost:5000/addOrder',{
       method: 'POST',
       headers:{
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization' : localStorage.getItem('accessToken')
       },
       body: JSON.stringify(order)
     })
@@ -185,7 +183,7 @@ const Purchase = () => {
                 err && <p className="alert alert-error shadow-sm">{err}</p>
               }
               <div class="form-control mt-6">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" disabled={parseInt(quant) <  parseInt(product.minQuantity) || parseInt(quant) > (product.available) } >
                   Add
                 </button>
               </div>

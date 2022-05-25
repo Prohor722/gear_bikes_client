@@ -59,7 +59,7 @@ const BusinessSummary = () => {
         </h2>
         <h4 className="text-2xl font-semibold">Don't hesitate to contact us</h4>
         </div>
-        <button class="btn btn-wide my-4 lg:my-0">Request For Quote</button>
+        <button class="btn btn-wide btn-secondary my-4 lg:my-0">Request For Quote</button>
         <button class="ml-4 btn btn-info hover:btn-primary hover:text-white">Contact Us</button>
       </div>
     </div>

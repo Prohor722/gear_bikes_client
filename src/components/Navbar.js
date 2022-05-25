@@ -21,11 +21,12 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem('accessToken');
     signOut(auth);
+    navigate('/login');
   };
   return (
     <div class="navbar bg-accent text-accent py-4 drop-shadow-lg">
       <div class="navbar-start">
-        <div class="dropdown">
+        <div class="dropdown z-5 absolute">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"

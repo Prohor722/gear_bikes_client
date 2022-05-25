@@ -15,11 +15,9 @@ const AddReview = () => {
     e.preventDefault();
     const post = e.target.review.value;
     const email = user.email;
-    const name = user.displayName;
 
     if (user.email && post) {
       const review = {
-        name,
         email,
         post,
         rate

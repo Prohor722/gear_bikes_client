@@ -23,6 +23,7 @@ import RequireOnlyUser from './middleware/RequireOnlyUser'
 import RequireAdmin from './middleware/RequireAdmin'
 import RequireAuth from './middleware/RequireAuth'
 import Loading from "./components/Loading";
+import Payment from "./pages/Dashboard/Payment";
 
 function App() {
   return (
@@ -57,6 +58,12 @@ function App() {
           <Route path="addReview" element={
             <RequireOnlyUser>
               <AddReview />
+            </RequireOnlyUser>
+          } />
+          
+          <Route path="payment" element={
+            <RequireOnlyUser>
+              <Payment />
             </RequireOnlyUser>
           } />
 

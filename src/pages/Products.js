@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import SingleProduct from "../components/Home/SingleProduct";
 import Loading from "../components/Loading";
@@ -7,7 +7,12 @@ import Search from "../components/Search";
 const Products = () => {
   const [search, setSearch] = useState("");
   const { data: products, isLoading } = useQuery(["allProducts", search], () =>
-    fetch(`http://localhost:5000/products?search=${search}`).then((res) =>
+    fetch(`http://localhost:5000/products?search=${search}`,{
+      method: "GET",
+      headers: {
+        "authorization" : localStorage.getItem('accessToken')
+      }
+    }).then((res) =>
       res.json()
     )
   );

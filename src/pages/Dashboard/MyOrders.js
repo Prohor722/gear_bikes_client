@@ -1,14 +1,16 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
+import ConfirmModal from "./ConfirmModal";
 
 const MyOrders = () => {
   const [user, loading, error] = useAuthState(auth);
 //   console.log(user?.email);
 
-  const { data: orders, isLoading } = useQuery("orders", () =>
+  const { data: orders, isLoading, refetch } = useQuery("orders", () =>
     fetch(`http://localhost:5000/orders/${user.email}`,{
         method: "GET",
         headers:{
@@ -32,6 +34,7 @@ const MyOrders = () => {
     <div>
         <h3 className="text-lg text-center text-secondary font-semibold mb-2">My Orders</h3>
       <div class="overflow-x-auto">
+        
         <table class="table table-compact w-full">
           <thead>
             <tr>
@@ -67,9 +70,12 @@ const MyOrders = () => {
                 <th>
                   {
                   (o?.status==='unpaid')? 
-                  <div>
-                      <button className="btn btn-success">pay</button>
-                      <button className="btn btn-secondary ml-2">cancel</button>
+                  <div className="flex">
+                      <Link to="/payment" className="btn btn-success mr-2">pay</Link>
+                        {/* <label for="confirmModal" class="btn btn-secondary ml-2 modal-button">
+                          cancel
+                        </label> */}
+                        <ConfirmModal id={o._id} name={o.productName} refetch={refetch} />
                   </div>
                    : 
                    <p className="text-success">{o?.status}</p>}

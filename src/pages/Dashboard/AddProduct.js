@@ -43,7 +43,7 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((data) => {
               console.log(data)
-              if (data.insertedId) {
+              if(data.insertedId) {
                 toast.success("New Product Added.");
               }else {
                 toast.error("Something went wrong!!");
