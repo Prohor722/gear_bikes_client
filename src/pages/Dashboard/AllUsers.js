@@ -1,9 +1,10 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import Loading from '../../components/Loading';
 
 const AllUsers = () => {
-    const { data: users, isLoading } = useQuery("users", () =>
+    const { data: users, isLoading, refetch } = useQuery("users", () =>
     fetch(`http://localhost:5000/users`).then((res) => res.json())
   );
 
@@ -16,7 +17,13 @@ const AllUsers = () => {
     })
     .then(res=>res.json())
     .then(data=>{
-        console.log(data);
+        if(data.modifiedCount){
+            toast.success("New Admin added.");
+            refetch();
+        }
+        else{
+            toast.error("Something went wrong please try again.");
+        }
     })
   }
 
@@ -58,8 +65,8 @@ const AllUsers = () => {
                     <th>{u?.address}</th>
                     <th>{u?.phone}</th>
                     <th>
-                      { !u?.name ? 
-                      <p className="text-success">{u?.role}</p>  
+                      { (u?.role==='admin') ? 
+                      <p className="pl-2 text-success text-lg">{u?.role}</p>  
                        : 
                        <button className="btn btn-sm btn-success" onClick={()=>makeAdmin(u?._id)}>Make Admin</button>
                       }
