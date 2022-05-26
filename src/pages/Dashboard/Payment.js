@@ -34,7 +34,7 @@ const Payment = () => {
     return <Loading />;
   }
   return (
-    <div className="w-full bg-yellow-100 flex flex-col justify-center lg:flex-row">
+    <div className="w-full flex flex-col justify-center lg:flex-row">
       <div className="card bg-base-100 mx-4 lg:w-96 shadow-xl my-12">
         <div className="card-body text-center">
           <p className="text-secondary font-bold">

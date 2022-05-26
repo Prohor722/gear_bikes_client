@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { success } from "daisyui/src/colors";
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
+import processingImg from '../../assets/images/paymentLoading.gif'
 
 const CheckoutForm = ({ order,userData }) => {
   const stripe = useStripe();
@@ -43,9 +44,9 @@ const CheckoutForm = ({ order,userData }) => {
 
     const card = elements.getElement(CardElement);
 
-    if(processing){
-      return <Loading/>
-    }
+    // if(processing===false){
+    //   return <Loading/>
+    // }
 
     if (card === null) {
       return;
@@ -78,6 +79,7 @@ const CheckoutForm = ({ order,userData }) => {
       setSuccess("");
       setProcessing(false);
     } else {
+      setProcessing(false);
       setCardError("");
       setTransactionId(paymentIntent.id);
       setSuccess("Congrats! Your payment is complicated.");
@@ -105,6 +107,7 @@ const CheckoutForm = ({ order,userData }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        {processing && <img src={processingImg} className="w-24 mx-auto" alt=" " />}
         <CardElement
           options={{
             style: {
