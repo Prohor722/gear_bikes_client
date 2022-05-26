@@ -25,6 +25,7 @@ import RequireAuth from './middleware/RequireAuth'
 import Payment from "./pages/Dashboard/Payment";
 import ManageProducts from "./pages/Dashboard/ManageProducts";
 import NotFound from "./pages/NotFound";
+import MyPortfolio from "./pages/MyPortfolio";
 
 function App() {
   return (
@@ -94,6 +95,7 @@ function App() {
 
 
 
+        <Route path="/myPortfolio" element={<MyPortfolio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/purchase/:id" element={
