@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [admin, adminLoading] = useAdmin(user);
 
   return (
-    <div class="drawer drawer-mobile bg-gradient-to-r from-yellow-200 to-base-100">
+    <div class="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col items-center">
         {/* Page content here */}

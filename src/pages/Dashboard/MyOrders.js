@@ -71,7 +71,7 @@ const MyOrders = () => {
                   {
                   (o?.status==='unpaid')? 
                   <div className="flex">
-                      <Link to="/payment" className="btn btn-success mr-2">pay</Link>
+                      <Link to={`/dashboard/payment/${o?._id}`} className="btn btn-xs btn-success mr-2">pay</Link>
                         {/* <label for="confirmModal" class="btn btn-secondary ml-2 modal-button">
                           cancel
                         </label> */}

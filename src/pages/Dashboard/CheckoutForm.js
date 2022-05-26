@@ -1,9 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { success } from "daisyui/src/colors";
 import React, { useEffect, useState } from "react";
-import Loading from "../Shared/Loading";
+import Loading from "../../components/Loading";
 
-const Checkoutform = ({ appointment }) => {
+const CheckoutForm = ({ order,userData }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -11,7 +11,9 @@ const Checkoutform = ({ appointment }) => {
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const { _id, price, patientName, patientEmail } = appointment;
+  const { _id, price, productName, email, quantity, status } = order;
+  const {name} = userData;
+  const totalPrice = parseFloat(price) * parseInt(quantity);
 
   useEffect(() => {
     fetch(
@@ -20,9 +22,9 @@ const Checkoutform = ({ appointment }) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: localStorage.getItem("accessToken"),
         },
-        body: JSON.stringify({ price }),
+        body: JSON.stringify({ price: totalPrice }),
       }
     )
       .then((res) => res.json())
@@ -31,7 +33,7 @@ const Checkoutform = ({ appointment }) => {
           setClientSecret(data.clientSecret);
         }
       });
-  }, [price]);
+  }, [totalPrice,order]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,8 +66,9 @@ const Checkoutform = ({ appointment }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: patientName,
-            email: patientEmail,
+            name: name,
+            email: email,
+            // orderId: order._id,
           },
         },
       });
@@ -81,14 +84,14 @@ const Checkoutform = ({ appointment }) => {
 
       //store payment on database
       const payment = {
-        appointment: _id,
+        id: order._id,
         transactionId: paymentIntent.id,
       };
-      fetch(`https://intense-badlands-42287.herokuapp.com/booking/${_id}`, {
+      fetch(`http://localhost:5000/order/paid`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          authorization: localStorage.getItem("accessToken"),
         },
         body: JSON.stringify(payment),
       })
@@ -140,4 +143,4 @@ const Checkoutform = ({ appointment }) => {
   );
 };
 
-export default Checkoutform;
+export default CheckoutForm;

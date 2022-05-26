@@ -61,7 +61,7 @@ function App() {
             </RequireOnlyUser>
           } />
           
-          <Route path="payment" element={
+          <Route path="payment/:id" element={
             <RequireOnlyUser>
               <Payment />
             </RequireOnlyUser>

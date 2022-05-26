@@ -24,7 +24,7 @@ const ConfirmModal = ({ id, name, refetch }) => {
     }
   return (
     <div>
-      <label for="confirmModal" class="btn modal-button btn-secondary">
+      <label for="confirmModal" class="btn modal-button btn-xs btn-secondary">
         delete
       </label>
 
