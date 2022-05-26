@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 
 const ManageOrders = () => {
   const [status, setStatus] = useState('all');
-  const { data: orders, isLoading, refactor } = useQuery(["allOrders", status], () =>
+  const { data: orders, isLoading, refetch } = useQuery(["allOrders", status], () =>
     fetch(`http://localhost:5000/orders/sortBy/${status}`, {
       method: "GET",
       headers: {
@@ -16,10 +17,28 @@ const ManageOrders = () => {
   const sort =e=>{
       e.preventDefault();
       const status= e.target.sort.value;
-      console.log(status);
       setStatus(status);
-      console.log(status);
-      refactor();
+      refetch();
+  }
+
+  const shipped = id =>{
+    fetch(`http://localhost:5000/orderShipped/${id}`,{
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: localStorage.getItem('accessToken'),
+      }
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.modifiedCount){
+        toast.success("Product Shipped");
+        refetch();
+      }
+      else{
+        toast.error("Product Shipped Error! Try again!!");
+      }
+    })
   }
 
 
@@ -79,7 +98,7 @@ const ManageOrders = () => {
                       {(o?.status === "unpaid") && <p className="text-secondary">unpaid</p>}
                       {(o?.status === "paid") && <div>
                       <p className="text-accent">pending</p>
-                      <button className="btn btn-xs btn-neutral text-white">ship</button>
+                      <button className="btn btn-xs btn-neutral text-white" onClick={()=>shipped(o._id)}>ship now</button>
                         </div>}
                       {(o?.status === "shipped") && <p className="text-success">shipped</p>}
                     </th>

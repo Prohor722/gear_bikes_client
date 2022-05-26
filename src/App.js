@@ -22,9 +22,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import RequireOnlyUser from './middleware/RequireOnlyUser'
 import RequireAdmin from './middleware/RequireAdmin'
 import RequireAuth from './middleware/RequireAuth'
-import Loading from "./components/Loading";
 import Payment from "./pages/Dashboard/Payment";
 import ManageProducts from "./pages/Dashboard/ManageProducts";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -101,7 +101,7 @@ function App() {
             <Purchase />
           </RequireOnlyUser>
         } />
-        {/* <Route path="*" element={<Loading />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
