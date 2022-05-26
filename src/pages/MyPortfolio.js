@@ -65,6 +65,15 @@ const MyPortfolio = () => {
         
         <p><span className="font-semibold">SSC:</span> Kurigram Govt High School, Kurigram <span className="ml-4 text-gray-500 font-semibold">GPA: 4.56</span></p>
         <p className="uppercase mb-2">Year: 2013</p>
+
+        <div>
+            <h3 className="text-lg text-secondary text-xl font-semibold mt-10" >Live Sites</h3>
+            <a href="https://watch-house-efd0d.web.app/" target="_blank" rel="noreferrer" className="font-bold text-blue-500">WatchHouse</a>
+            <br/>
+            <a href="https://wedding-photographer-8d8a6.web.app/login" target="_blank" rel="noreferrer" className="font-bold text-blue-500">Wedding Photographer</a>
+            <br/>
+            <a href="https://shoeshell.netlify.app/" target="_blank" rel="noreferrer" className="font-bold text-blue-500">ShoeShell</a>
+        </div>
       </div>
     </div>
   );
