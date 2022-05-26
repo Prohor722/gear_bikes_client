@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
@@ -9,12 +10,18 @@ const RequireOnlyUser = ({children}) => {
     const [user, loading ] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
     const location = useLocation();
+    console.log("admin: ", admin)
+    console.log("user: ", !user)
+    console.log("admin Loading: ", adminLoading)
 
     if(loading || adminLoading){
         return <Loading/>
     }
     if(admin){
         return <Navigate to="/" state={{from:location}} replace/>
+    }
+    if(!user){
+        return <Navigate to="/login" state={{from:location}} replace/>
     }
     return children;
 };

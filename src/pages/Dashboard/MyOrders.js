@@ -11,7 +11,7 @@ const MyOrders = () => {
 //   console.log(user?.email);
 
   const { data: orders, isLoading, refetch } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/orders/${user.email}`,{
+    fetch(`http://localhost:5000/orders/${user?.email}`,{
         method: "GET",
         headers:{
             authorization: localStorage.getItem('accessToken')
@@ -21,12 +21,14 @@ const MyOrders = () => {
     )
   );
 
+  const copyId = id =>{
+    navigator.clipboard.writeText(id);
+  }
+
   if (loading || isLoading || !orders) {
     return <Loading />;
   }
-//   if (orders) {
-//     // console.log(orders);
-//   }
+  
   if(error){
       return <p className="text-4xl text-secondary">Something went wrong</p>
   }
@@ -72,13 +74,20 @@ const MyOrders = () => {
                   (o?.status==='unpaid')? 
                   <div className="flex">
                       <Link to={`/dashboard/payment/${o?._id}`} className="btn btn-xs btn-success mr-2">pay</Link>
-                        {/* <label for="confirmModal" class="btn btn-secondary ml-2 modal-button">
-                          cancel
-                        </label> */}
                         <ConfirmModal id={o._id} name={o.productName} refetch={refetch} />
                   </div>
                    : 
-                   <p className="text-success">{o?.status}</p>}
+                   <div>
+                     <p className="text-success">{o?.status}</p>
+                     <p className="text-secondary pr-2">{o?.transactionId}</p>
+                     <button 
+                     className="btn btn-xs btn-primary" 
+                     title={o.transactionId}
+                     onClick={()=>copyId(o.transactionId)}
+                     id={`copyBtn-${o._id}`}
+                      >copy transactionID
+                     </button>
+                    </div>}
                 </th>
               </tr>
             ))}

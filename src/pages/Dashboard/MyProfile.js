@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import useUser from "../../hooks/useUser";
 
 const MyProfile = () => {
-  const [userData,loading] = useUser();
+  const [userData,loading, refetch] = useUser();
+  const [upload, setUpload] = useState(null);
   // console.log(userData);
   const {
     register,
@@ -27,15 +28,18 @@ const MyProfile = () => {
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
 
-    fetch(url,{
-      method: "POST",
-      body: formData,
-    })
-    .then(res=>res.json())
-    .then(result=>{
-      if(result.success){
-        img = result.data.url;
-        console.log("direct url:",result.data.url);
+      fetch(url,{
+        method: "POST",
+        body: formData,
+      })
+      .then(res=>res.json())
+      .then(result=>{
+        if(result.success){
+          img = result.data.url;
+          console.log("direct url:",result.data.url);
+          setUpload("success");
+        }
+        
         const email = userData.email;
         const id = userData._id;
         
@@ -52,6 +56,7 @@ const MyProfile = () => {
           email
         }
         console.log(updateUser)
+
         //send to database
         fetch('http://localhost:5000/updateUser', {
           method: "PUT",
@@ -64,15 +69,16 @@ const MyProfile = () => {
           .then((res) => res.json())
           .then((data) => {
             if(data.modifiedCount){
-              toast.success("You have updated your profile.")
+              toast.success("You have updated your profile.");
+              refetch();
             }
             else{
-              toast.error("Something went wrong!!")
+              toast.error("Something went wrong!!");
             }
           });
-      }
-    })
-    console.log("sob kisor bahire", img);
+        
+      })
+
   };
 
   if (loading || !userData) {

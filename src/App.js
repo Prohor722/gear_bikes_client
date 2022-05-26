@@ -24,6 +24,7 @@ import RequireAdmin from './middleware/RequireAdmin'
 import RequireAuth from './middleware/RequireAuth'
 import Loading from "./components/Loading";
 import Payment from "./pages/Dashboard/Payment";
+import ManageProducts from "./pages/Dashboard/ManageProducts";
 
 function App() {
   return (
@@ -80,11 +81,17 @@ function App() {
 
           } />
 
+          <Route path="manageProducts" element={
+          <RequireAdmin>
+            <ManageProducts/>
+          </RequireAdmin>} />          
+
           <Route path="users" element={
           <RequireAdmin>
             <AllUsers/>
           </RequireAdmin>} />
         </Route>
+
 
 
         <Route path="/login" element={<Login />} />
@@ -94,7 +101,7 @@ function App() {
             <Purchase />
           </RequireOnlyUser>
         } />
-        <Route path="*" element={<Loading />} />
+        {/* <Route path="*" element={<Loading />} /> */}
       </Routes>
 
       <Footer />

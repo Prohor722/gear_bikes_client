@@ -9,7 +9,7 @@ const Review = ({ review }) => {
   const star = Array.from(Array(review.rate).keys());
   const blnk = 5-star.length;
   let blankStar;
-  console.log(blnk);
+  
   if(blnk){
     blankStar = Array.from(Array(blnk).keys());
   }
