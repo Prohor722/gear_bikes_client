@@ -23,13 +23,13 @@ const ConfirmModal = ({ id, name, refetch }) => {
   return (
     <div>
       <label
-        htmlFor="confirmModal"
+        htmlFor={`confirmModal-${id}`}
         className="btn modal-button btn-xs btn-secondary"
       >
         delete
       </label>
 
-      <input type="checkbox" id="confirmModal" className="modal-toggle" />
+      <input type="checkbox" id={`confirmModal-${id}`} className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
@@ -37,13 +37,13 @@ const ConfirmModal = ({ id, name, refetch }) => {
           </h3>
           <div className="modal-action">
             <label
-              htmlFor="confirmModal"
+              htmlFor={`confirmModal-${id}`}
               onClick={deleteOrder}
               className="btn btn-error"
             >
               Confirm
             </label>
-            <label htmlFor="confirmModal" className="btn btn-info">
+            <label htmlFor={`confirmModal-${id}`} className="btn btn-info">
               Cancel
             </label>
           </div>
