@@ -4,8 +4,12 @@ import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 
 const ManageOrders = () => {
-  const [status, setStatus] = useState('all');
-  const { data: orders, isLoading, refetch } = useQuery(["allOrders", status], () =>
+  const [status, setStatus] = useState("all");
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery(["allOrders", status], () =>
     fetch(`http://localhost:5000/orders/sortBy/${status}`, {
       method: "GET",
       headers: {
@@ -14,33 +18,31 @@ const ManageOrders = () => {
     }).then((res) => res.json())
   );
 
-  const sort =e=>{
-      e.preventDefault();
-      const status= e.target.sort.value;
-      setStatus(status);
-      refetch();
-  }
+  const sort = (e) => {
+    e.preventDefault();
+    const status = e.target.sort.value;
+    setStatus(status);
+    refetch();
+  };
 
-  const shipped = id =>{
-    fetch(`http://localhost:5000/orderShipped/${id}`,{
-      method: 'PATCH',
+  const shipped = (id) => {
+    fetch(`http://localhost:5000/orderShipped/${id}`, {
+      method: "PATCH",
       headers: {
-        'content-type': 'application/json',
-        authorization: localStorage.getItem('accessToken'),
-      }
+        "content-type": "application/json",
+        authorization: localStorage.getItem("accessToken"),
+      },
     })
-    .then(res=>res.json())
-    .then(data=>{
-      if(data.modifiedCount){
-        toast.success("Product Shipped");
-        refetch();
-      }
-      else{
-        toast.error("Product Shipped Error! Try again!!");
-      }
-    })
-  }
-
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          toast.success("Product Shipped");
+          refetch();
+        } else {
+          toast.error("Product Shipped Error! Try again!!");
+        }
+      });
+  };
 
   if (isLoading || !orders) {
     return <Loading />;
@@ -51,17 +53,22 @@ const ManageOrders = () => {
         Manage Orders
       </h2>
       <form className="flex flex-row-reverse mb-2" onSubmit={sort}>
-        <select name="sort" class="select select-bordered select-xs max-w-xs">
+        <select
+          name="sort"
+          className="select select-bordered select-xs max-w-xs"
+        >
           <option value="all">All</option>
           <option value="paid">Pending</option>
           <option value="unpaid">Unpaid</option>
           <option value="shipped">Shipped</option>
         </select>
-        <button className="btn btn-xs btn-primary ml-2" type="submit">sort</button>
+        <button className="btn btn-xs btn-primary ml-2" type="submit">
+          sort
+        </button>
       </form>
       <div>
-        <div class="overflow-x-auto">
-          <table class="table table-compact w-full z-10">
+        <div className="overflow-x-auto">
+          <table className="table table-compact w-full z-10">
             <thead>
               <tr>
                 <th>No.</th>
@@ -81,26 +88,39 @@ const ManageOrders = () => {
                   <tr key={o?._id}>
                     <th>{index + 1}</th>
                     <th>
-                      <div class="mask mask-squircle w-20 h-20">
+                      <div className="mask mask-squircle w-20 h-20">
                         <img
                           src={o?.productImg}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </th>
-                    <th>{o?.productName}</th>
+                    <th title={o?.productName}>
+                    {o?.productName.length>20? o?.productName.slice(0,10)+"..." 
+                    : o?.productName}</th>
                     <th>{o?.email}</th>
                     <th>{o?.address}</th>
                     <th>{o?.phone}</th>
                     <th>{o?.quantity}</th>
                     <th>{o?.price}</th>
                     <th>
-                      {(o?.status === "unpaid") && <p className="text-secondary">unpaid</p>}
-                      {(o?.status === "paid") && <div>
-                      <p className="text-accent">pending</p>
-                      <button className="btn btn-xs btn-neutral text-white" onClick={()=>shipped(o._id)}>ship now</button>
-                        </div>}
-                      {(o?.status === "shipped") && <p className="text-success">shipped</p>}
+                      {o?.status === "unpaid" && (
+                        <p className="text-secondary">unpaid</p>
+                      )}
+                      {o?.status === "paid" && (
+                        <div>
+                          <p className="text-accent">pending</p>
+                          <button
+                            className="btn btn-xs btn-neutral text-white"
+                            onClick={() => shipped(o._id)}
+                          >
+                            ship now
+                          </button>
+                        </div>
+                      )}
+                      {o?.status === "shipped" && (
+                        <p className="text-success">shipped</p>
+                      )}
                     </th>
                   </tr>
                 ))}

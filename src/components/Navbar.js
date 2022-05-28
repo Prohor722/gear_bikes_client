@@ -8,10 +8,10 @@ import Loading from "./Loading";
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
-  const [userData] = useUser();
+  const [userData, isLoading] = useUser();
   const navigate = useNavigate();
 
-  if (loading) {
+  if (loading || isLoading) {
     return <Loading />;
   }
   if (error) {
@@ -19,18 +19,18 @@ const Navbar = () => {
   }
 
   const logout = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem("accessToken");
     signOut(auth);
-    navigate('/login');
+    navigate("/login");
   };
   return (
-    <div class="navbar bg-accent text-accent py-4 drop-shadow-lg">
-      <div class="navbar-start">
-        <div class="dropdown z-5 absolute">
-          <label tabindex="0" class="btn btn-ghost lg:hidden">
+    <div className="navbar bg-accent text-accent py-4 drop-shadow-lg">
+      <div className="navbar-start">
+        <div className="dropdown z-5 absolute">
+          <label tabindex="0" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-primary"
+              className="h-5 w-5 text-primary"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -44,9 +44,9 @@ const Navbar = () => {
             </svg>
           </label>
 
-          {/* <div class="drawer-content flex">
-            <label class="avatar" for="my-drawer-2">
-              <div class="w-12 rounded-full ring ring-primary ring-offset-2">
+          {/* <div className="drawer-content flex">
+            <label className="avatar" htmlFor="my-drawer-2">
+              <div className="w-12 rounded-full ring ring-primary ring-offset-2">
                 <img src="https://api.lorem.space/image/face?hash=3174" alt="avatar" />
               </div>
             </label>
@@ -54,7 +54,7 @@ const Navbar = () => {
 
           <ul
             tabindex="0"
-            class="menu menu-compact z-10 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact z-10 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <NavLink to="/">Home</NavLink>
@@ -67,9 +67,6 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/myPortfolio">My Portfolio</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">About</NavLink>
             </li>
             <li>
               <NavLink to="/blog">Blog</NavLink>
@@ -88,37 +85,33 @@ const Navbar = () => {
         </div>
         <Link
           to="/"
-          class="btn btn-ghost font-extrabold text-2xl normal-case text-primary ml-6 lg:ml-0"
+          className="btn btn-ghost font-extrabold text-2xl normal-case text-primary ml-6 lg:ml-0"
         >
           GearBikes
         </Link>
       </div>
 
-      {userData?.img &&
-        <div class="navbar-end mt-2 mr-2 lg:hidden">
-          <label class="avatar" for="dashboard-sidebar">
-            <div class="w-12 rounded-full ring ring-primary">
-              <img
-                src={userData?.img}
-                alt="avatar"
-              />
+      {userData?.img && (
+        <div className="navbar-end mt-2 mr-2 lg:hidden">
+          <label className="avatar">
+            <div className="w-12 rounded-full ring ring-primary">
+              <img src={userData?.img} alt="avatar" />
             </div>
           </label>
         </div>
-      }
+      )}
 
-      <div class="navbar-center hidden lg:flex ml-auto">
-        <ul class="menu menu-horizontal p-0 text-white">
-          {userData?.img && <li>
-            <div class="avatar p-0 mr-4">
-              <div class="w-12 rounded-full ring ring-primary ">
-                <img
-                  src={userData?.img}
-                  alt="hamburger menu icon"
-                />
+      <div className="navbar-center hidden lg:flex ml-auto">
+        <ul className="menu menu-horizontal p-0 text-white">
+          {userData?.img && (
+            <>
+              <div className="avatar p-0 mr-4">
+                <div className="w-12 rounded-full ring ring-primary " >
+                  <img src={userData?.img} alt="hamburger menu icon" />
+                </div>
               </div>
-            </div>
-          </li>}
+            </>
+          )}
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
@@ -129,10 +122,7 @@ const Navbar = () => {
             <NavLink to="/reviews">Reviews</NavLink>
           </li>
           <li>
-              <NavLink to="/myPortfolio">My Portfolio</NavLink>
-          </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/myPortfolio">My Portfolio</NavLink>
           </li>
           <li>
             <NavLink to="/blog">Blog</NavLink>
@@ -142,12 +132,13 @@ const Navbar = () => {
           </li>
           <li>
             {user ? (
-              <a onClick={logout}>Sign out</a>
+              <button className="" type="link" onClick={logout}>
+                Sign out
+              </button>
             ) : (
               <NavLink to="/login">Login</NavLink>
             )}
           </li>
-          
         </ul>
       </div>
     </div>

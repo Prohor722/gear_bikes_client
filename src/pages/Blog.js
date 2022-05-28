@@ -1,8 +1,11 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const Blog = () => {
   return (
-    <div className="mx-4 lg:mx-20 border my-10 p-4 lg:py-20 lg:px-40 text-center">
+    <div>
+      <Navbar/>
+      <div className="mx-4 lg:mx-20 border my-10 p-4 lg:py-20 lg:px-40 text-center">
       <h2 className="text-2xl">Questions and Answers</h2>
       <hr />
 
@@ -72,7 +75,7 @@ const Blog = () => {
           const search = "Dabu";
           <br />
           const searched =
-          products.find(p&#61;&#62;p.name.toLowerCase&#40;&#41;.includes&#40;search.toLowerCase&#40;&#41;&#41;&#41;;
+          products.find&#40;p&#61;&#62;p.name.toLowerCase&#40;&#41;.includes&#40;search.toLowerCase&#40;&#41;&#41;&#41;;
           <br />
           console.log&#40;searched&#41;;
         </code>
@@ -93,6 +96,7 @@ const Blog = () => {
           production.
         </p>
       </div>
+    </div>
     </div>
   );
 };

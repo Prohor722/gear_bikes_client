@@ -8,36 +8,39 @@ import ConfirmModal from "./ConfirmModal";
 
 const MyOrders = () => {
   const [user, loading, error] = useAuthState(auth);
-//   console.log(user?.email);
+  //   console.log(user?.email);
 
-  const { data: orders, isLoading, refetch } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/orders/${user?.email}`,{
-        method: "GET",
-        headers:{
-            authorization: localStorage.getItem('accessToken')
-        }
-    }).then((res) =>
-      res.json()
-    )
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery("orders", () =>
+    fetch(`http://localhost:5000/orders/${user?.email}`, {
+      method: "GET",
+      headers: {
+        authorization: localStorage.getItem("accessToken"),
+      },
+    }).then((res) => res.json())
   );
 
-  const copyId = id =>{
+  const copyId = (id) => {
     navigator.clipboard.writeText(id);
-  }
+  };
 
   if (loading || isLoading || !orders) {
     return <Loading />;
   }
-  
-  if(error){
-      return <p className="text-4xl text-secondary">Something went wrong</p>
+
+  if (error) {
+    return <p className="text-4xl text-secondary">Something went wrong</p>;
   }
   return (
     <div>
-        <h3 className="text-lg text-center text-secondary font-semibold mb-2">My Orders</h3>
-      <div class="overflow-x-auto">
-        
-        <table class="table table-compact w-full">
+      <h3 className="text-lg text-center text-secondary font-semibold mb-2">
+        My Orders
+      </h3>
+      <div className="overflow-x-auto">
+        <table className="table table-compact w-full">
           <thead>
             <tr>
               <th>No.</th>
@@ -52,45 +55,60 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            { orders && orders.map((o,index) => (
-              <tr key={o?._id}>
-                <th>{index+1}</th>
-                <th>
-                  <div class="mask mask-squircle w-20 h-20">
-                    <img
-                      src={o?.productImg}
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </th>
-                <th>{o?.productName}</th>
-                <th>{o?.email}</th>
-                <th>{o?.address}</th>
-                <th>{o?.phone}</th>
-                <th>{o?.quantity}</th>
-                <th>{o?.price}</th>
-                <th>
-                  {
-                  (o?.status==='unpaid')? 
-                  <div className="flex">
-                      <Link to={`/dashboard/payment/${o?._id}`} className="btn btn-xs btn-success mr-2">pay</Link>
-                        <ConfirmModal id={o._id} name={o.productName} refetch={refetch} />
-                  </div>
-                   : 
-                   <div>
-                     <p className="text-success">{o?.status}</p>
-                     <p className="text-secondary pr-2">{o?.transactionId}</p>
-                     <button 
-                     className="btn btn-xs btn-primary" 
-                     title={o.transactionId}
-                     onClick={()=>copyId(o.transactionId)}
-                     id={`copyBtn-${o._id}`}
-                      >copy transactionID
-                     </button>
-                    </div>}
-                </th>
-              </tr>
-            ))}
+            {orders &&
+              orders.map((o, index) => (
+                <tr key={o?._id}>
+                  <th>{index + 1}</th>
+                  <th>
+                    <div className="mask mask-squircle w-20 h-20">
+                      <img
+                        src={o?.productImg}
+                        alt="Avatar Tailwind CSS Component"
+                      />
+                    </div>
+                  </th>
+                  <th title={o?.productName}>
+                    {o?.productName.length>20? o?.productName.slice(0,25)+"..." 
+                    : o?.productName}</th>
+                  <th>{o?.email}</th>
+                  <th>{o?.address}</th>
+                  <th>{o?.phone}</th>
+                  <th>{o?.quantity}</th>
+                  <th>{o?.price}</th>
+                  <th>
+                    {o?.status === "unpaid" ? (
+                      <div className="flex">
+                        <Link
+                          to={`/dashboard/payment/${o?._id}`}
+                          className="btn btn-xs btn-success mr-2"
+                        >
+                          pay
+                        </Link>
+                        <ConfirmModal
+                          id={o._id}
+                          name={o.productName}
+                          refetch={refetch}
+                        />
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-success">{o?.status}</p>
+                        <p className="text-secondary pr-2">
+                          {o?.transactionId}
+                        </p>
+                        <button
+                          className="btn btn-xs btn-primary"
+                          title={o.transactionId}
+                          onClick={() => copyId(o.transactionId)}
+                          id={`copyBtn-${o._id}`}
+                        >
+                          copy transactionID
+                        </button>
+                      </div>
+                    )}
+                  </th>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

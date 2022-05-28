@@ -7,7 +7,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const BusinessSummary = () => {
   return (
-    <div className="py-20">
+    <div className="py-20 bg-gradient-to-r from-yellow-100 to-base-100">
       <h2 className="uppercase text-4xl font-bold text-center">
         Millions Business Trust Us
       </h2>
@@ -52,14 +52,21 @@ const BusinessSummary = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center p-10 mx-2 lg:mx-20 shadow-2xl mt-10 rounded-md">
+      <div className="flex flex-col lg:flex-row items-center p-10 mx-2 lg:mx-20 shadow-2xl mt-10 rounded-md border border-yellow-100">
         <div>
-        <h2 className="text-4xl font-bold text-secondary mb-2">Have any question about us or get a product request ?
-        </h2>
-        <h4 className="text-2xl font-semibold">Don't hesitate to contact us</h4>
+          <h2 className="text-4xl font-bold text-secondary mb-2">
+            Have any question about us or get a product request ?
+          </h2>
+          <h4 className="text-2xl font-semibold">
+            Don't hesitate to contact us
+          </h4>
         </div>
-        <button class="btn btn-wide btn-secondary my-4 lg:my-0">Request For Quote</button>
-        <button class="ml-4 btn btn-info hover:btn-primary hover:text-white">Contact Us</button>
+        <button className="btn btn-wide btn-secondary my-4 lg:my-0">
+          Request For Quote
+        </button>
+        <button className="ml-4 btn btn-info hover:btn-primary hover:text-white">
+          Contact Us
+        </button>
       </div>
     </div>
   );

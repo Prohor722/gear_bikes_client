@@ -12,7 +12,6 @@ const AddProduct = () => {
   const imageStorageKey = "babbbc32e0d550e6d017e38db2462b2b";
 
   const onSubmit = async (data) => {
-    
     let { name, price, desc, quantity, minOrder } = data;
     let img;
     const image = data.image[0];
@@ -25,38 +24,44 @@ const AddProduct = () => {
       body: formData,
     })
       .then((res) => res.json())
-      .then(result => {
+      .then((result) => {
         if (result.success) {
           img = result.data.url;
-          }
-          const addProduct = { name,img , price, desc, available:quantity, minQuantity:minOrder };
+        }
+        const addProduct = {
+          name,
+          img,
+          price,
+          desc,
+          available: quantity,
+          minQuantity: minOrder,
+        };
 
-          //send to database
-          fetch("http://localhost:5000/addProduct", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              authorization: localStorage.getItem("accessToken"),
-            },
-            body: JSON.stringify(addProduct),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data)
-              if(data.insertedId) {
-                toast.success("New Product Added.");
-              }else {
-                toast.error("Something went wrong!!");
-              }
-            });
+        //send to database
+        fetch("http://localhost:5000/addProduct", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: localStorage.getItem("accessToken"),
+          },
+          body: JSON.stringify(addProduct),
         })
-      
-  }
-
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("New Product Added.");
+            } else {
+              toast.error("Something went wrong!!");
+            }
+          });
+      });
+  };
 
   return (
     <div>
-      <h2 className="text-lg text-secondary text-center font-semibold mt-2 mb-4">Add Product</h2>
+      <h2 className="text-lg text-secondary text-center font-semibold mt-2 mb-4">
+        Add Product
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mb-6">
         <div className="flex flex-col lg:flex-row">
           <div>
@@ -223,11 +228,7 @@ const AddProduct = () => {
           </div>
         </div>
 
-        <input
-          type="submit"
-          className="btn btn-success w-full"
-          value="ADD"
-        />
+        <input type="submit" className="btn btn-success w-full" value="ADD" />
       </form>
     </div>
   );

@@ -3,7 +3,7 @@ import bike1 from '../../assets/images/bike.png'
 
 const Banner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center text-secondary lg:pt-20 lg:pb-28">
+    <div className="flex flex-col lg:flex-row items-center justify-center text-secondary lg:pt-20 lg:pb-28 bg-gradient-to-r from-yellow-100 to-base-100">
         <h2 className="text-6xl font-bold lg:px-20">
           What ever Part you want you can get..
         </h2>

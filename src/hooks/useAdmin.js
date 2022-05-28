@@ -5,19 +5,19 @@ const useAdmin = (user) => {
   const [adminLoading, setAdminLoading] = useState(true);
 
   useEffect(() => {
-      const email = user?.email;
-      fetch(`http://localhost:5000/adminCheck/${email}`, {
-        method: "GET",
-        headers: {
-          authorization: localStorage.getItem("accessToken"),
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setAdmin(data.admin);
-          setAdminLoading(false);
-        });
-    }, [user]);
+    const email = user?.email;
+    fetch(`http://localhost:5000/adminCheck/${email}`, {
+      method: "GET",
+      headers: {
+        authorization: localStorage.getItem("accessToken"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAdmin(data.admin);
+        setAdminLoading(false);
+      });
+  }, [user]);
 
   return [admin, adminLoading];
 };

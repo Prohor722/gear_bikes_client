@@ -2,9 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { success } from "daisyui/src/colors";
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import processingImg from '../../assets/images/paymentLoading.gif'
+import processingImg from "../../assets/images/paymentLoading.gif";
 
-const CheckoutForm = ({ order,userData }) => {
+const CheckoutForm = ({ order, userData }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -13,28 +13,25 @@ const CheckoutForm = ({ order,userData }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const { _id, price, productName, email, quantity, status } = order;
-  const {name} = userData;
+  const { name } = userData;
   const totalPrice = parseFloat(price) * parseInt(quantity);
 
   useEffect(() => {
-    fetch(
-      "http://localhost:5000/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: localStorage.getItem("accessToken"),
-        },
-        body: JSON.stringify({ price: totalPrice }),
-      }
-    )
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({ price: totalPrice }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
           setClientSecret(data.clientSecret);
         }
       });
-  }, [totalPrice,order]);
+  }, [totalPrice, order]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -107,7 +104,9 @@ const CheckoutForm = ({ order,userData }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {processing && <img src={processingImg} className="w-24 mx-auto" alt=" " />}
+        {processing && (
+          <img src={processingImg} className="w-24 mx-auto" alt=" " />
+        )}
         <CardElement
           options={{
             style: {

@@ -10,9 +10,6 @@ const RequireOnlyUser = ({children}) => {
     const [user, loading ] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
     const location = useLocation();
-    console.log("admin: ", admin)
-    console.log("user: ", !user)
-    console.log("admin Loading: ", adminLoading)
 
     if(loading || adminLoading){
         return <Loading/>

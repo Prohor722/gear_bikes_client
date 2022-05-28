@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
+import Navbar from '../components/Navbar';
 import auth from '../firebase.init';
 import useToken from '../hooks/useToken';
 
@@ -42,7 +43,9 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password);
   };
     return (
-        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-yellow-100 to-base-100">
+        <div>
+          <Navbar/>
+          <div className="flex justify-center items-center h-screen bg-gradient-to-r from-yellow-100 to-base-100">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-2xl mb-12">Login</h2>
@@ -139,6 +142,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+        </div>
     );
 };
 

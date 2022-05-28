@@ -6,8 +6,6 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Blog from "./pages/Blog";
-import About from "./pages/About";
-import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Purchase from "./pages/Purchase";
@@ -26,17 +24,16 @@ import Payment from "./pages/Dashboard/Payment";
 import ManageProducts from "./pages/Dashboard/ManageProducts";
 import NotFound from "./pages/NotFound";
 import MyPortfolio from "./pages/MyPortfolio";
+import Loading from "./components/Loading";
 
 function App() {
   return (
     <div>
-      <Navbar />
       <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
 
 
@@ -103,6 +100,7 @@ function App() {
             <Purchase />
           </RequireOnlyUser>
         } />
+        {/* <Route path="/loading" element={<Loading />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
 
