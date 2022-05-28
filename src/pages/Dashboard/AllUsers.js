@@ -67,7 +67,9 @@ const AllUsers = () => {
                     </th>
                     <th>{u?.name}</th>
                     <th>{u?.email}</th>
-                    <th>{u?.address}</th>
+                    <th title={u?.address}>
+                      {u?.address.length>30? u?.address.slice(0,30)+'...' : u?.address}
+                      </th>
                     <th>{u?.phone}</th>
                     <th>
                       {u?.role === "admin" ? (
