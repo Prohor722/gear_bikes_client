@@ -101,7 +101,9 @@ const ManageOrders = () => {
                         : o?.productName}
                     </th>
                     <th>{o?.email}</th>
-                    <th>{o?.address}</th>
+                    <th title={o?.address} >
+                      {o?.address.length>25 ? o?.address.slice(0,25)+'...' : o?.address}
+                      </th>
                     <th>{o?.phone}</th>
                     <th>{o?.quantity}</th>
                     <th>{o?.price}</th>
