@@ -35,7 +35,7 @@ const MyProfile = () => {
       .then((result) => {
         if (result.success) {
           img = result.data.url;
-          console.log("direct url:", result.data.url);
+          // console.log("direct url:", result.data.url);
           setUpload("success");
         }
 
@@ -60,7 +60,7 @@ const MyProfile = () => {
           address,
           email,
         };
-        console.log(updateUser);
+        // console.log(updateUser);
 
         //send to database
         fetch("https://lit-ravine-76252.herokuapp.com/updateUser", {

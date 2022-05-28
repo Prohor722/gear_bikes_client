@@ -15,7 +15,7 @@ const Payment = () => {
   const [userData, loading] = useUser();
   const url = `https://lit-ravine-76252.herokuapp.com/getOrder/${id}`;
 
-  console.log("id: ", id);
+  // console.log("id: ", id);
   const { data: order, isLoading } = useQuery(["buyProducts", id], () =>
     fetch(url, {
       method: "GET",
@@ -25,8 +25,8 @@ const Payment = () => {
     }).then((res) => res.json())
   );
 
-  console.log("User Data: ", userData);
-  console.log("Order Data: ", order);
+  // console.log("User Data: ", userData);
+  // console.log("Order Data: ", order);
 
   if (isLoading || loading) {
     return <Loading />;

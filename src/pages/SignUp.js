@@ -61,7 +61,8 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((data) => {
         if(data?.token){
-          localStorage.setItem('accessToken', data.token);
+          const t = 'Bearer '+ data.token;
+          localStorage.setItem('accessToken', t);
           navigate('/');
         }
       });

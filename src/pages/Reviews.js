@@ -21,7 +21,7 @@ const Reviews = () => {
     .then((data) => {
       if (data.count) {
         setPages(Math.ceil(parseInt(data.count) / 12));
-        console.log(pages);
+        // console.log(pages);
       }
     });
 
