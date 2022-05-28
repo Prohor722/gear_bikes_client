@@ -9,7 +9,7 @@ const AllUsers = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/users`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -18,7 +18,7 @@ const AllUsers = () => {
   );
 
   const makeAdmin = (id) => {
-    fetch(`http://localhost:5000/makeAdmin/${id}`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/makeAdmin/${id}`, {
       method: "PUT",
       headers: {
         authorization: localStorage.getItem("accessToken"),

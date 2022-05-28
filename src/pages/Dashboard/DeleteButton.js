@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const DeleteButton = ({ name, product_id, deleteStatus, setDeleteStatus }) => {
   const deleteProduct = () => {
-    fetch(`http://localhost:5000/product/${product_id}`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/product/${product_id}`, {
       method: "DELETE",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -22,7 +22,10 @@ const DeleteButton = ({ name, product_id, deleteStatus, setDeleteStatus }) => {
 
   return (
     <div>
-      <label htmlFor={`modal-${product_id}`} className="btn modal-button btn-xs btn-secondary">
+      <label
+        htmlFor={`modal-${product_id}`}
+        className="btn modal-button btn-xs btn-secondary"
+      >
         Delete
       </label>
 
@@ -37,7 +40,11 @@ const DeleteButton = ({ name, product_id, deleteStatus, setDeleteStatus }) => {
             Are you sure you want to delete {name}?
           </h3>
           <div className="modal-action">
-            <label htmlFor={`modal-${product_id}`} className="btn btn-secondary" onClick={() => deleteProduct(product_id)}>
+            <label
+              htmlFor={`modal-${product_id}`}
+              className="btn btn-secondary"
+              onClick={() => deleteProduct(product_id)}
+            >
               Delete
             </label>
             <label htmlFor={`modal-${product_id}`} className="btn btn-primary">

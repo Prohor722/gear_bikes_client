@@ -22,7 +22,7 @@ const AddReview = () => {
         post,
         rate,
       };
-      fetch("http://localhost:5000/addReview", {
+      fetch("https://lit-ravine-76252.herokuapp.com/addReview", {
         method: "POST",
         headers: {
           "content-type": "application/json",

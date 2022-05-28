@@ -15,7 +15,7 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/orders/${user?.email}`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/orders/${user?.email}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -68,8 +68,10 @@ const MyOrders = () => {
                     </div>
                   </th>
                   <th title={o?.productName}>
-                    {o?.productName.length>20? o?.productName.slice(0,25)+"..." 
-                    : o?.productName}</th>
+                    {o?.productName.length > 20
+                      ? o?.productName.slice(0, 25) + "..."
+                      : o?.productName}
+                  </th>
                   <th>{o?.email}</th>
                   <th>{o?.address}</th>
                   <th>{o?.phone}</th>

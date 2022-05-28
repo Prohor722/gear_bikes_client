@@ -11,7 +11,7 @@ const useUser = () => {
     isLoading,
     refetch,
   } = useQuery(["loadUserData", user], () =>
-    fetch(`http://localhost:5000/user/${user?.email}`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/user/${user?.email}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -29,7 +29,7 @@ export default useUser;
 
 // useEffect(()=>{
 //     if(user){
-// fetch(`http://localhost:5000/user/${user.email}`,{method: 'GET',
+// fetch(`https://lit-ravine-76252.herokuapp.com/user/${user.email}`,{method: 'GET',
 //     headers: {
 //         'content-type': 'application/json',
 //         'authorization' : localStorage.getItem('accessToken')

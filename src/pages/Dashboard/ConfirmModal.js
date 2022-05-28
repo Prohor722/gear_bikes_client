@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const ConfirmModal = ({ id, name, refetch }) => {
   const deleteOrder = () => {
-    fetch(`http://localhost:5000/order/${id}`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/order/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

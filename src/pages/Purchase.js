@@ -14,7 +14,7 @@ const Purchase = () => {
   const [quant, setQuant] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/product/${id}`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/product/${id}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -74,7 +74,7 @@ const Purchase = () => {
       status,
     };
 
-    fetch("http://localhost:5000/addOrder", {
+    fetch("https://lit-ravine-76252.herokuapp.com/addOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -95,7 +95,9 @@ const Purchase = () => {
   return (
     <div className="bg-gradient-to-r from-yellow-100 to-base-100">
       <Navbar />
-      <h3 className="uppercase text-2xl font-semibold text-secondary text-center my-28 lg:mt-5 lg:mb-2">Add to your Order list</h3>
+      <h3 className="uppercase text-2xl font-semibold text-secondary text-center my-28 lg:mt-5 lg:mb-2">
+        Add to your Order list
+      </h3>
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col lg:flex-row">
           <div className="bg-white shadow-lg flex flex-col items-center mx:w-sm">

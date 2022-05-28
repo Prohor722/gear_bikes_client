@@ -14,9 +14,9 @@ const Review = ({ review }) => {
   }
 
   const { data: user, isLoading } = useQuery(["reviewUser", review], () =>
-    fetch(`http://localhost:5000/reviewUserInfo/${review.email}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://lit-ravine-76252.herokuapp.com/reviewUserInfo/${review.email}`
+    ).then((res) => res.json())
   );
 
   if (isLoading) {

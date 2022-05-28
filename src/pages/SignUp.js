@@ -56,7 +56,7 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
 
-    fetch(`http://localhost:5000/user`, {
+    fetch(`https://lit-ravine-76252.herokuapp.com/user`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

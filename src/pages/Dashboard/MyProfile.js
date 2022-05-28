@@ -63,7 +63,7 @@ const MyProfile = () => {
         console.log(updateUser);
 
         //send to database
-        fetch("http://localhost:5000/updateUser", {
+        fetch("https://lit-ravine-76252.herokuapp.com/updateUser", {
           method: "PUT",
           headers: {
             "content-type": "application/json",

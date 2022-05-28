@@ -17,7 +17,7 @@ const CheckoutForm = ({ order, userData }) => {
   const totalPrice = parseFloat(price) * parseInt(quantity);
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://lit-ravine-76252.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,7 +86,7 @@ const CheckoutForm = ({ order, userData }) => {
         id: order._id,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/order/paid`, {
+      fetch(`https://lit-ravine-76252.herokuapp.com/order/paid`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

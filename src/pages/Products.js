@@ -14,7 +14,9 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products?search=${search}&page=${currentPage}`)
+    fetch(
+      `https://lit-ravine-76252.herokuapp.com/products?search=${search}&page=${currentPage}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);

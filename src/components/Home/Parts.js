@@ -6,14 +6,16 @@ import SingleProduct from "./SingleProduct";
 
 const Parts = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("http://localhost:5000/latestProducts").then((res) => res.json())
+    fetch("https://lit-ravine-76252.herokuapp.com/latestProducts").then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) {
     return <Loading />;
   }
   // const [products , setProducts] = useState([]);
-  // fetch('http://localhost:5000/latestProducts')
+  // fetch('https://lit-ravine-76252.herokuapp.com/latestProducts')
   // .then(res=>res.json())
   // .then(data=>setProducts(data))
   return (

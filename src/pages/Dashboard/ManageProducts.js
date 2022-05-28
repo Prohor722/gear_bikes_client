@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import Search from "../../components/Search";
 import DeleteButton from "./DeleteButton";
@@ -14,7 +12,9 @@ const ManageProducts = () => {
   const [deleteStatus, setDeleteStatus] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products?search=${search}&page=${currentPage}`)
+    fetch(
+      `https://lit-ravine-76252.herokuapp.com/products?search=${search}&page=${currentPage}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
@@ -27,7 +27,6 @@ const ManageProducts = () => {
     return <Loading />;
   }
 
-  
   return (
     <div>
       <h2 className="text-xl font-semibold text-secondary mb-2 text-center">
