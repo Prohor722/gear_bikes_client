@@ -42,7 +42,7 @@ const AllUsers = () => {
     <div>
       <h2>Al Users</h2>
       <div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mb-10">
           <table className="table table-compact w-full">
             <thead>
               <tr>
@@ -68,7 +68,7 @@ const AllUsers = () => {
                     <th>{u?.name}</th>
                     <th>{u?.email}</th>
                     <th title={u?.address}>
-                      {u?.address.length>30? u?.address.slice(0,30)+'...' : u?.address}
+                      {u?.address?.length>30? u?.address.slice(0,30)+'...' : u?.address}
                       </th>
                     <th>{u?.phone}</th>
                     <th>
