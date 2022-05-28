@@ -33,10 +33,10 @@ const SignUp = () => {
   let errorMessage;
 
   useEffect(() => {
-    if (user || googleUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, googleUser, from, navigate]);
+  }, [user, googleUser, from, navigate, token]);
 
   if (error || googleError || updateError) {
     errorMessage = (
@@ -48,10 +48,6 @@ const SignUp = () => {
     return <Loading />;
   }
 
-  if (token) {
-    // console.log("success");
-    navigate("/");
-  }
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
