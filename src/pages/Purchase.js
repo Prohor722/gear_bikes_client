@@ -41,11 +41,11 @@ const Purchase = () => {
     const status = "unpaid";
     // console.log("address: ",address, " phone:",phone," quantity:", quantity);
 
-    if (quantity > product.available) {
+    if (quantity > parseInt(product.available)) {
       setErr("Please add quantity that much we have currently.");
       return;
     }
-    if (quantity < product.minQuantity) {
+    if (quantity < parseInt(product.minQuantity)) {
       setErr("Sorry can not add less then minimum quantity.");
       return;
     }

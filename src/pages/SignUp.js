@@ -20,8 +20,6 @@ const SignUp = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  const [token] = useToken(user || googleUser);
-
   const {
     register,
     formState: { errors },
@@ -31,6 +29,7 @@ const SignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   let errorMessage;
+  const [token] = useToken(user || googleUser);
 
   useEffect(() => {
     if (token) {
@@ -56,12 +55,16 @@ const SignUp = () => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
-        authorization: localStorage.getItem("accessToken"),
       },
       body: JSON.stringify({ email: data.email, name: data.name }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if(data?.token){
+          localStorage.setItem('accessToken', data.token);
+          navigate('/');
+        }
+      });
   };
   return (
     <div>
