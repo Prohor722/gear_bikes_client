@@ -121,7 +121,7 @@ const Login = () => {
 
               <input
                 type="submit"
-                className="btn w-full max-w-xs"
+                className="btn w-full max-w-xs btn-success"
                 value="Login"
               />
             </form>
