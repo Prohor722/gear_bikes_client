@@ -6,7 +6,7 @@ import SingleProduct from "./SingleProduct";
 
 const Parts = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("https://lit-ravine-76252.herokuapp.com/latestProducts").then((res) =>
+    fetch("https://gearbikesserver-production.up.railway.app/latestProducts").then((res) =>
       res.json()
     )
   );
@@ -15,7 +15,7 @@ const Parts = () => {
     return <Loading />;
   }
   // const [products , setProducts] = useState([]);
-  // fetch('https://lit-ravine-76252.herokuapp.com/latestProducts')
+  // fetch('https://gearbikesserver-production.up.railway.app/latestProducts')
   // .then(res=>res.json())
   // .then(data=>setProducts(data))
   return (

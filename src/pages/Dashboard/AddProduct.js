@@ -38,7 +38,7 @@ const AddProduct = () => {
         };
 
         //send to database
-        fetch("https://lit-ravine-76252.herokuapp.com/addProduct", {
+        fetch("https://gearbikesserver-production.up.railway.app/addProduct", {
           method: "POST",
           headers: {
             "content-type": "application/json",

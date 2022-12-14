@@ -8,15 +8,15 @@ const Reviews = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState(0);
 
-  // const {data:reviewCount} = useQuery('pages',()=>fetch('https://lit-ravine-76252.herokuapp.com/reviewCount').then(res=>res.json()));
+  // const {data:reviewCount} = useQuery('pages',()=>fetch('https://gearbikesserver-production.up.railway.app/reviewCount').then(res=>res.json()));
 
   const { data: reviews, isLoading } = useQuery(["reviews", currentPage], () =>
     fetch(
-      `https://lit-ravine-76252.herokuapp.com/reviews?page=${currentPage}`
+      `https://gearbikesserver-production.up.railway.app/reviews?page=${currentPage}`
     ).then((res) => res.json())
   );
 
-  fetch("https://lit-ravine-76252.herokuapp.com/reviewCount")
+  fetch("https://gearbikesserver-production.up.railway.app/reviewCount")
     .then((res) => res.json())
     .then((data) => {
       if (data.count) {

@@ -14,7 +14,7 @@ const Purchase = () => {
   const [quant, setQuant] = useState(0);
 
   useEffect(() => {
-    fetch(`https://lit-ravine-76252.herokuapp.com/product/${id}`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/product/${id}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -74,7 +74,7 @@ const Purchase = () => {
       status,
     };
 
-    fetch("https://lit-ravine-76252.herokuapp.com/addOrder", {
+    fetch("https://gearbikesserver-production.up.railway.app/addOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",

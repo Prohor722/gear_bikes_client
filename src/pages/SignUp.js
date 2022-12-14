@@ -51,7 +51,7 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
 
-    fetch(`https://lit-ravine-76252.herokuapp.com/user`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/user`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

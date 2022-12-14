@@ -10,7 +10,7 @@ const ManageOrders = () => {
     isLoading,
     refetch,
   } = useQuery(["allOrders", status], () =>
-    fetch(`https://lit-ravine-76252.herokuapp.com/orders/sortBy/${status}`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/orders/sortBy/${status}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -26,7 +26,7 @@ const ManageOrders = () => {
   };
 
   const shipped = (id) => {
-    fetch(`https://lit-ravine-76252.herokuapp.com/orderShipped/${id}`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/orderShipped/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

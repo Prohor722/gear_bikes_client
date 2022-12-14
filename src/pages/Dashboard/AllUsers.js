@@ -9,7 +9,7 @@ const AllUsers = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch(`https://lit-ravine-76252.herokuapp.com/users`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/users`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -18,7 +18,7 @@ const AllUsers = () => {
   );
 
   const makeAdmin = (id) => {
-    fetch(`https://lit-ravine-76252.herokuapp.com/makeAdmin/${id}`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/makeAdmin/${id}`, {
       method: "PUT",
       headers: {
         authorization: localStorage.getItem("accessToken"),

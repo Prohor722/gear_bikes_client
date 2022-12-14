@@ -22,7 +22,7 @@ const AddReview = () => {
         post,
         rate,
       };
-      fetch("https://lit-ravine-76252.herokuapp.com/addReview", {
+      fetch("https://gearbikesserver-production.up.railway.app/addReview", {
         method: "POST",
         headers: {
           "content-type": "application/json",

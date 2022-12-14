@@ -9,7 +9,7 @@ const useToken = (user) => {
     const currentUser = { email, name };
 
     if (email && name) {
-      fetch(`https://lit-ravine-76252.herokuapp.com/user`, {
+      fetch(`https://gearbikesserver-production.up.railway.app/user`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

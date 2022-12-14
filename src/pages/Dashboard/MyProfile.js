@@ -63,7 +63,7 @@ const MyProfile = () => {
         // console.log(updateUser);
 
         //send to database
-        fetch("https://lit-ravine-76252.herokuapp.com/updateUser", {
+        fetch("https://gearbikesserver-production.up.railway.app/updateUser", {
           method: "PUT",
           headers: {
             "content-type": "application/json",

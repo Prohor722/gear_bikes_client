@@ -15,7 +15,7 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(`https://lit-ravine-76252.herokuapp.com/orders/${user?.email}`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/orders/${user?.email}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -56,8 +56,8 @@ const MyOrders = () => {
           </thead>
           <tbody>
             {orders &&
-              orders.map((o, index) => (
-                <tr key={o?._id}>
+              orders.map((o, index) => 
+                <tr key={index}>
                   <th>{index + 1}</th>
                   <th>
                     <div className="mask mask-squircle w-20 h-20">
@@ -112,7 +112,7 @@ const MyOrders = () => {
                     )}
                   </th>
                 </tr>
-              ))}
+              )}
           </tbody>
         </table>
       </div>

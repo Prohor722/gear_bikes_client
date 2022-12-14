@@ -13,7 +13,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const { id } = useParams();
   const [userData, loading] = useUser();
-  const url = `https://lit-ravine-76252.herokuapp.com/getOrder/${id}`;
+  const url = `https://gearbikesserver-production.up.railway.app/getOrder/${id}`;
 
   // console.log("id: ", id);
   const { data: order, isLoading } = useQuery(["buyProducts", id], () =>

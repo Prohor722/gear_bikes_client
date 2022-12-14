@@ -17,7 +17,7 @@ const CheckoutForm = ({ order, userData }) => {
   const totalPrice = parseFloat(price) * parseInt(quantity);
 
   useEffect(() => {
-    fetch("https://lit-ravine-76252.herokuapp.com/create-payment-intent", {
+    fetch("https://gearbikesserver-production.up.railway.app/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,7 +86,7 @@ const CheckoutForm = ({ order, userData }) => {
         id: order._id,
         transactionId: paymentIntent.id,
       };
-      fetch(`https://lit-ravine-76252.herokuapp.com/order/paid`, {
+      fetch(`https://gearbikesserver-production.up.railway.app/order/paid`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

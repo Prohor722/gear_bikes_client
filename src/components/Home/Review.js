@@ -15,7 +15,7 @@ const Review = ({ review }) => {
 
   const { data: user, isLoading } = useQuery(["reviewUser", review], () =>
     fetch(
-      `https://lit-ravine-76252.herokuapp.com/reviewUserInfo/${review.email}`
+      `https://gearbikesserver-production.up.railway.app/reviewUserInfo/${review.email}`
     ).then((res) => res.json())
   );
 

@@ -11,7 +11,7 @@ const useUser = () => {
     isLoading,
     refetch,
   } = useQuery(["loadUserData", user], () =>
-    fetch(`https://lit-ravine-76252.herokuapp.com/user/${user?.email}`, {
+    fetch(`https://gearbikesserver-production.up.railway.app/user/${user?.email}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -29,7 +29,7 @@ export default useUser;
 
 // useEffect(()=>{
 //     if(user){
-// fetch(`https://lit-ravine-76252.herokuapp.com/user/${user.email}`,{method: 'GET',
+// fetch(`https://gearbikesserver-production.up.railway.app/user/${user.email}`,{method: 'GET',
 //     headers: {
 //         'content-type': 'application/json',
 //         'authorization' : localStorage.getItem('accessToken')

@@ -15,7 +15,7 @@ const Products = () => {
 
   useEffect(() => {
     fetch(
-      `https://lit-ravine-76252.herokuapp.com/products?search=${search}&page=${currentPage}`
+      `https://gearbikesserver-production.up.railway.app/products?search=${search}&page=${currentPage}`
     )
       .then((res) => res.json())
       .then((data) => {
