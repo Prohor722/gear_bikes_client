@@ -9,7 +9,7 @@ const AllUsers = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch(`https://gearbikesserver-production.up.railway.app/users`, {
+    fetch(`https://gear-bikes-server.onrender.com/users`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -18,7 +18,7 @@ const AllUsers = () => {
   );
 
   const makeAdmin = (id) => {
-    fetch(`https://gearbikesserver-production.up.railway.app/makeAdmin/${id}`, {
+    fetch(`https://gear-bikes-server.onrender.com/makeAdmin/${id}`, {
       method: "PUT",
       headers: {
         authorization: localStorage.getItem("accessToken"),

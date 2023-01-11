@@ -17,7 +17,7 @@ const CheckoutForm = ({ order, userData }) => {
   const totalPrice = parseFloat(price) * parseInt(quantity);
 
   useEffect(() => {
-    fetch("https://gearbikesserver-production.up.railway.app/create-payment-intent", {
+    fetch("https://gear-bikes-server.onrender.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,7 +86,7 @@ const CheckoutForm = ({ order, userData }) => {
         id: order._id,
         transactionId: paymentIntent.id,
       };
-      fetch(`https://gearbikesserver-production.up.railway.app/order/paid`, {
+      fetch(`https://gear-bikes-server.onrender.com/order/paid`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

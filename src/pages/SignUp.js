@@ -51,7 +51,7 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
 
-    fetch(`https://gearbikesserver-production.up.railway.app/user`, {
+    fetch(`https://gear-bikes-server.onrender.com/user`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

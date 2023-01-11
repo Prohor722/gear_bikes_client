@@ -15,7 +15,7 @@ const Review = ({ review }) => {
 
   const { data: user, isLoading } = useQuery(["reviewUser", review], () =>
     fetch(
-      `https://gearbikesserver-production.up.railway.app/reviewUserInfo/${review.email}`
+      `https://gear-bikes-server.onrender.com/reviewUserInfo/${review.email}`
     ).then((res) => res.json())
   );
 

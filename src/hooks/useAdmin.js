@@ -6,7 +6,7 @@ const useAdmin = (user) => {
 
   useEffect(() => {
     const email = user?.email;
-    fetch(`https://gearbikesserver-production.up.railway.app/adminCheck/${email}`, {
+    fetch(`https://gear-bikes-server.onrender.com/adminCheck/${email}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),

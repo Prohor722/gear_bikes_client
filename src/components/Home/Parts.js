@@ -6,7 +6,7 @@ import SingleProduct from "./SingleProduct";
 
 const Parts = () => {
   const { data: products, isLoading } = useQuery("products", () =>
-    fetch("https://gearbikesserver-production.up.railway.app/latestProducts").then((res) =>
+    fetch("https://gear-bikes-server.onrender.com/latestProducts").then((res) =>
       res.json()
     )
   );
@@ -15,14 +15,14 @@ const Parts = () => {
     return <Loading />;
   }
   // const [products , setProducts] = useState([]);
-  // fetch('https://gearbikesserver-production.up.railway.app/latestProducts')
+  // fetch('https://gear-bikes-server.onrender.com/latestProducts')
   // .then(res=>res.json())
   // .then(data=>setProducts(data))
   return (
     <div className="py-0 lg:py-20 bg-base-100">
       <h2 className="text-4xl font-bold text-center mb-6">Parts</h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mx-6 lg:mx-28">
-        {products.map((p) => (
+        {products[0]?._id && products.map((p) => (
           <SingleProduct key={p._id} product={p} />
         ))}
       </div>

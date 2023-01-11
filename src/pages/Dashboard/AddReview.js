@@ -22,7 +22,7 @@ const AddReview = () => {
         post,
         rate,
       };
-      fetch("https://gearbikesserver-production.up.railway.app/addReview", {
+      fetch("https://gear-bikes-server.onrender.com/addReview", {
         method: "POST",
         headers: {
           "content-type": "application/json",

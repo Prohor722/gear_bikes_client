@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const DeleteButton = ({ name, product_id, deleteStatus, setDeleteStatus }) => {
   const deleteProduct = () => {
-    fetch(`https://gearbikesserver-production.up.railway.app/product/${product_id}`, {
+    fetch(`https://gear-bikes-server.onrender.com/product/${product_id}`, {
       method: "DELETE",
       headers: {
         authorization: localStorage.getItem("accessToken"),

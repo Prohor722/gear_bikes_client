@@ -63,7 +63,7 @@ const MyProfile = () => {
         // console.log(updateUser);
 
         //send to database
-        fetch("https://gearbikesserver-production.up.railway.app/updateUser", {
+        fetch("https://gear-bikes-server.onrender.com/updateUser", {
           method: "PUT",
           headers: {
             "content-type": "application/json",

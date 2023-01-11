@@ -6,7 +6,7 @@ import Review from "./Review";
 
 const ReviewSection = () => {
   const { data: reviews, isLoading } = useQuery("reviews", () =>
-    fetch("https://gearbikesserver-production.up.railway.app/latestReviews").then((res) =>
+    fetch("https://gear-bikes-server.onrender.com/latestReviews").then((res) =>
       res.json()
     )
   );
@@ -20,7 +20,7 @@ const ReviewSection = () => {
         Customer Reviews
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mx-6 lg:mx-20">
-        {reviews.map((r) => (
+        {reviews[0]._id && reviews.map((r) => (
           <Review key={r._id} review={r} />
         ))}
       </div>

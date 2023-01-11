@@ -8,15 +8,15 @@ const Reviews = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState(0);
 
-  // const {data:reviewCount} = useQuery('pages',()=>fetch('https://gearbikesserver-production.up.railway.app/reviewCount').then(res=>res.json()));
+  // const {data:reviewCount} = useQuery('pages',()=>fetch('https://gear-bikes-server.onrender.com/reviewCount').then(res=>res.json()));
 
   const { data: reviews, isLoading } = useQuery(["reviews", currentPage], () =>
     fetch(
-      `https://gearbikesserver-production.up.railway.app/reviews?page=${currentPage}`
+      `https://gear-bikes-server.onrender.com/reviews?page=${currentPage}`
     ).then((res) => res.json())
   );
 
-  fetch("https://gearbikesserver-production.up.railway.app/reviewCount")
+  fetch("https://gear-bikes-server.onrender.com/reviewCount")
     .then((res) => res.json())
     .then((data) => {
       if (data.count) {

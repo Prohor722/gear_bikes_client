@@ -9,7 +9,7 @@ const useToken = (user) => {
     const currentUser = { email, name };
 
     if (email && name) {
-      fetch(`https://gearbikesserver-production.up.railway.app/user`, {
+      fetch(`https://gear-bikes-server.onrender.com/user`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

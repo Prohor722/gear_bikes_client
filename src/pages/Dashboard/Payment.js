@@ -13,7 +13,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const { id } = useParams();
   const [userData, loading] = useUser();
-  const url = `https://gearbikesserver-production.up.railway.app/getOrder/${id}`;
+  const url = `https://gear-bikes-server.onrender.com/getOrder/${id}`;
 
   // console.log("id: ", id);
   const { data: order, isLoading } = useQuery(["buyProducts", id], () =>

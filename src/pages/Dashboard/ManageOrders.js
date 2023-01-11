@@ -10,7 +10,7 @@ const ManageOrders = () => {
     isLoading,
     refetch,
   } = useQuery(["allOrders", status], () =>
-    fetch(`https://gearbikesserver-production.up.railway.app/orders/sortBy/${status}`, {
+    fetch(`https://gear-bikes-server.onrender.com/orders/sortBy/${status}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -26,7 +26,7 @@ const ManageOrders = () => {
   };
 
   const shipped = (id) => {
-    fetch(`https://gearbikesserver-production.up.railway.app/orderShipped/${id}`, {
+    fetch(`https://gear-bikes-server.onrender.com/orderShipped/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

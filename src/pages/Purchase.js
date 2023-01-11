@@ -14,7 +14,7 @@ const Purchase = () => {
   const [quant, setQuant] = useState(0);
 
   useEffect(() => {
-    fetch(`https://gearbikesserver-production.up.railway.app/product/${id}`, {
+    fetch(`https://gear-bikes-server.onrender.com/product/${id}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),
@@ -74,7 +74,7 @@ const Purchase = () => {
       status,
     };
 
-    fetch("https://gearbikesserver-production.up.railway.app/addOrder", {
+    fetch("https://gear-bikes-server.onrender.com/addOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",

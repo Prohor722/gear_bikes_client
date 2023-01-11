@@ -38,7 +38,7 @@ const AddProduct = () => {
         };
 
         //send to database
-        fetch("https://gearbikesserver-production.up.railway.app/addProduct", {
+        fetch("https://gear-bikes-server.onrender.com/addProduct", {
           method: "POST",
           headers: {
             "content-type": "application/json",

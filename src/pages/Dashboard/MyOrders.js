@@ -15,7 +15,7 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(`https://gearbikesserver-production.up.railway.app/orders/${user?.email}`, {
+    fetch(`https://gear-bikes-server.onrender.com/orders/${user?.email}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("accessToken"),

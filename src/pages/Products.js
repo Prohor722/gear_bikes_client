@@ -15,7 +15,7 @@ const Products = () => {
 
   useEffect(() => {
     fetch(
-      `https://gearbikesserver-production.up.railway.app/products?search=${search}&page=${currentPage}`
+      `https://gear-bikes-server.onrender.com/products?search=${search}&page=${currentPage}`
     )
       .then((res) => res.json())
       .then((data) => {

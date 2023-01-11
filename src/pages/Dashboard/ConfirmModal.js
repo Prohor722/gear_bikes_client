@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const ConfirmModal = ({ id, name, refetch }) => {
   const deleteOrder = () => {
-    fetch(`https://gearbikesserver-production.up.railway.app/order/${id}`, {
+    fetch(`https://gear-bikes-server.onrender.com/order/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
